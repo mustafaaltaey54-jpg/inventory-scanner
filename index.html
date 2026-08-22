@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html
+lang="ar"
+dir="rtl">
 
 <head>
 
@@ -7,7 +10,7 @@
 
 <meta
 name="viewport"
-content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 
 <meta
 name="theme-color"
@@ -26,77 +29,62 @@ src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
 <style>
 
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 
 body {
 
-    margin: 0;
+    margin:0;
 
     font-family:
         Arial,
         sans-serif;
 
-    background:
-        #f3f4f6;
+    background:#f3f4f6;
 
-    color:
-        #111827;
+    color:#111827;
 
 }
 
 
 header {
 
-    background:
-        #111827;
+    background:#111827;
 
-    color:
-        white;
+    color:white;
 
-    padding:
-        18px;
+    text-align:center;
 
-    text-align:
-        center;
+    padding:18px;
 
-    font-size:
-        21px;
+    font-size:21px;
 
-    font-weight:
-        bold;
+    font-weight:bold;
 
 }
 
 
 .container {
 
-    max-width:
-        520px;
+    max-width:520px;
 
-    margin:
-        auto;
+    margin:auto;
 
-    padding:
-        18px;
+    padding:18px;
 
 }
 
 
 .card {
 
-    background:
-        white;
+    background:white;
 
-    border-radius:
-        18px;
+    border-radius:18px;
 
-    padding:
-        20px;
+    padding:20px;
 
-    margin-bottom:
-        16px;
+    margin-bottom:16px;
 
     box-shadow:
         0 4px 18px rgba(0,0,0,.08);
@@ -104,257 +92,212 @@ header {
 }
 
 
-button {
-
-    width:
-        100%;
-
-    border:
-        none;
-
-    border-radius:
-        14px;
-
-    padding:
-        16px;
-
-    margin-top:
-        10px;
-
-    font-size:
-        18px;
-
-    font-weight:
-        bold;
-
-}
-
-
-button:disabled {
-
-    opacity:
-        .6;
-
-}
-
-
-.primary {
-
-    background:
-        #111827;
-
-    color:
-        white;
-
-}
-
-
-.receive {
-
-    background:
-        #16a34a;
-
-    color:
-        white;
-
-}
-
-
-.issue {
-
-    background:
-        #dc2626;
-
-    color:
-        white;
-
-}
-
-
-.count {
-
-    background:
-        #2563eb;
-
-    color:
-        white;
-
-}
-
-
-.secondary {
-
-    background:
-        #e5e7eb;
-
-    color:
-        #111827;
-
-}
-
-
 .hidden {
 
-    display:
-        none;
-
-}
-
-
-#reader {
-
-    width:
-        100%;
-
-    overflow:
-        hidden;
-
-    border-radius:
-        16px;
-
-    background:
-        black;
+    display:none !important;
 
 }
 
 
 .title {
 
-    font-size:
-        24px;
+    text-align:center;
 
-    font-weight:
-        bold;
+    font-size:24px;
 
-    text-align:
-        center;
+    font-weight:bold;
 
-    margin-bottom:
-        10px;
+    margin-bottom:12px;
 
 }
 
 
 .barcode {
 
-    text-align:
-        center;
+    text-align:center;
 
-    color:
-        #6b7280;
+    color:#6b7280;
 
-    font-size:
-        15px;
+    font-size:14px;
 
 }
 
 
 .stock {
 
-    text-align:
-        center;
+    text-align:center;
 
-    font-size:
-        30px;
+    font-size:34px;
 
-    font-weight:
-        bold;
+    font-weight:bold;
 
-    margin:
-        20px 0;
+    margin:20px 0 5px 0;
+
+}
+
+
+.stockLabel {
+
+    text-align:center;
+
+    color:#6b7280;
 
 }
 
 
 .info {
 
-    background:
-        #f9fafb;
+    background:#f9fafb;
 
-    padding:
-        12px;
+    padding:12px;
 
-    border-radius:
-        12px;
+    border-radius:12px;
 
-    margin-top:
-        8px;
+    margin-top:8px;
+
+}
+
+
+button {
+
+    width:100%;
+
+    border:0;
+
+    border-radius:14px;
+
+    padding:16px;
+
+    margin-top:10px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+button:disabled {
+
+    opacity:.6;
+
+}
+
+
+.primary {
+
+    background:#111827;
+
+    color:white;
+
+}
+
+
+.receive {
+
+    background:#16a34a;
+
+    color:white;
+
+}
+
+
+.issue {
+
+    background:#dc2626;
+
+    color:white;
+
+}
+
+
+.count {
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+.secondary {
+
+    background:#e5e7eb;
+
+    color:#111827;
 
 }
 
 
 input {
 
-    width:
-        100%;
+    width:100%;
 
-    padding:
-        15px;
+    padding:15px;
 
     border:
         1px solid #d1d5db;
 
-    border-radius:
-        12px;
+    border-radius:12px;
 
-    font-size:
-        20px;
+    font-size:20px;
 
-    text-align:
-        center;
+    text-align:center;
 
 }
 
 
 .message {
 
-    white-space:
-        pre-line;
+    margin-top:12px;
 
-    text-align:
-        center;
+    padding:14px;
 
-    padding:
-        12px;
+    border-radius:12px;
 
-    border-radius:
-        12px;
+    text-align:center;
 
-    margin-top:
-        12px;
+    white-space:pre-line;
 
 }
 
 
 .success {
 
-    background:
-        #dcfce7;
+    background:#dcfce7;
 
-    color:
-        #166534;
+    color:#166534;
 
 }
 
 
 .error {
 
-    background:
-        #fee2e2;
+    background:#fee2e2;
 
-    color:
-        #991b1b;
+    color:#991b1b;
 
 }
 
 
 .warning {
 
-    background:
-        #fef3c7;
+    background:#fef3c7;
 
-    color:
-        #92400e;
+    color:#92400e;
+
+}
+
+
+#reader {
+
+    width:100%;
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:#000;
 
 }
 
@@ -367,293 +310,302 @@ input {
 
 
 <header>
+
 نظام مخزون الموصل
+
 </header>
 
 
 <div class="container">
 
 
-<!-- HOME -->
+<!-- ==================================================
+     HOME
+================================================== -->
 
-<div
+<section
 id="home"
 class="card">
 
-    <div class="title">
-        📦 المخزون
-    </div>
 
-    <button
-    class="primary"
-    onclick="startScanner()">
+<div class="title">
 
-        📷 مسح الباركود
-
-    </button>
+📦 المخزون
 
 </div>
 
 
-<!-- SCANNER -->
+<button
+class="primary"
+onclick="startScanner()">
 
-<div
+📷 مسح الباركود
+
+</button>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     SCANNER
+================================================== -->
+
+<section
 id="scannerCard"
 class="card hidden">
 
-    <div id="reader"></div>
 
-    <button
-    class="secondary"
-    onclick="stopScanner()">
-
-        إلغاء
-
-    </button>
-
-</div>
+<div id="reader"></div>
 
 
-<!-- PRODUCT -->
+<button
+class="secondary"
+onclick="stopScanner()">
 
-<div
+إلغاء
+
+</button>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     PRODUCT
+================================================== -->
+
+<section
 id="productCard"
 class="card hidden">
 
 
-    <div
-    class="title"
-    id="productName">
+<div
+id="productName"
+class="title">
 
-        -
-
-    </div>
-
-
-    <div
-    class="barcode"
-    id="productBarcode">
-
-        -
-
-    </div>
-
-
-    <div class="info">
-
-        التصنيف:
-
-        <strong
-        id="productCategory">
-
-            -
-
-        </strong>
-
-    </div>
-
-
-    <div class="info">
-
-        الوحدة:
-
-        <strong
-        id="productUnit">
-
-            -
-
-        </strong>
-
-    </div>
-
-
-    <div class="stock">
-
-        <span
-        id="productStock">
-
-            0
-
-        </span>
-
-    </div>
-
-
-    <div
-    style="text-align:center">
-
-        الرصيد الحالي
-
-    </div>
-
-
-    <button
-    class="receive"
-    onclick="openTransaction('receive')">
-
-        📥 استلام
-
-    </button>
-
-
-    <button
-    class="issue"
-    onclick="openTransaction('issue')">
-
-        📤 صرف
-
-    </button>
-
-
-    <button
-    class="count"
-    onclick="openTransaction('count')">
-
-        📊 جرد
-
-    </button>
-
-
-    <button
-    class="secondary"
-    onclick="startScanner()">
-
-        📷 مسح صنف آخر
-
-    </button>
-
+-
 
 </div>
 
 
-<!-- TRANSACTION -->
+<div
+id="productBarcode"
+class="barcode">
+
+-
+
+</div>
+
+
+<div class="info">
+
+التصنيف:
+
+<strong
+id="productCategory">
+
+-
+
+</strong>
+
+</div>
+
+
+<div class="info">
+
+الوحدة:
+
+<strong
+id="productUnit">
+
+-
+
+</strong>
+
+</div>
+
 
 <div
+id="productStock"
+class="stock">
+
+0
+
+</div>
+
+
+<div class="stockLabel">
+
+الرصيد الحالي
+
+</div>
+
+
+<button
+class="receive"
+onclick="openTransaction('receive')">
+
+📥 استلام
+
+</button>
+
+
+<button
+class="issue"
+onclick="openTransaction('issue')">
+
+📤 صرف
+
+</button>
+
+
+<button
+class="count"
+onclick="openTransaction('count')">
+
+📊 جرد
+
+</button>
+
+
+<button
+class="secondary"
+onclick="startScanner()">
+
+📷 مسح صنف آخر
+
+</button>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     TRANSACTION
+================================================== -->
+
+<section
 id="transactionCard"
 class="card hidden">
 
 
-    <div
-    class="title"
-    id="transactionTitle">
+<div
+id="transactionTitle"
+class="title">
 
-        -
+-
 
-    </div>
-
-
-    <div class="info">
-
-        الصنف:
-
-        <strong
-        id="transactionProduct">
-
-            -
-
-        </strong>
-
-    </div>
+</div>
 
 
-    <div class="info">
+<div class="info">
 
-        الرصيد الحالي:
+الصنف:
 
-        <strong
-        id="transactionStock">
+<strong
+id="transactionProduct">
 
-            0
+-
 
-        </strong>
+</strong>
 
-    </div>
-
-
-    <br>
+</div>
 
 
-    <input
-    id="quantity"
-    type="number"
-    min="0"
-    inputmode="numeric"
-    placeholder="أدخل الكمية">
+<div class="info">
+
+الرصيد الحالي:
+
+<strong
+id="transactionStock">
+
+0
+
+</strong>
+
+</div>
 
 
-    <button
-    id="confirmButton"
-    class="primary"
-    onclick="submitTransaction()">
-
-        تأكيد
-
-    </button>
+<br>
 
 
-    <button
-    class="secondary"
-    onclick="cancelTransaction()">
+<input
+id="quantity"
+type="number"
+min="0"
+step="1"
+inputmode="numeric"
+placeholder="أدخل الكمية">
 
-        إلغاء
 
-    </button>
+<button
+id="confirmButton"
+class="primary"
+onclick="submitTransaction()">
+
+تأكيد
+
+</button>
 
 
-    <div
-    id="transactionMessage">
-    </div>
+<button
+class="secondary"
+onclick="cancelTransaction()">
+
+إلغاء
+
+</button>
+
+
+<div
+id="transactionMessage">
+</div>
+
+
+</section>
 
 
 </div>
 
 
-</div>
-
-
-<!-- Hidden POST target -->
+<!-- ==================================================
+     HIDDEN POST FRAME
+================================================== -->
 
 <iframe
 name="hiddenSubmitFrame"
 id="hiddenSubmitFrame"
-style="display:none;">
+style="display:none">
 </iframe>
 
 
 <script>
 
 
-/*
-========================================
-API
-========================================
-*/
+/* =====================================================
+   API URL
+===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxjArHofijvSsT8gb_YiVKziygG2z6YDeMVOhOetH4PIG5svVZQ2MBRJoAMwTBI0RvG/exec";
 
 
-let scanner =
-    null;
+let scanner = null;
+
+let scanning = false;
+
+let currentProduct = null;
+
+let currentAction = null;
 
 
-let scanning =
-    false;
-
-
-let currentProduct =
-    null;
-
-
-let currentAction =
-    null;
-
-
-/*
-========================================
-START SCANNER
-========================================
-*/
+/* =====================================================
+   START CAMERA
+===================================================== */
 
 async function startScanner() {
 
@@ -682,11 +634,12 @@ async function startScanner() {
 
 
     scanner =
-        new Html5Qrcode("reader");
+        new Html5Qrcode(
+            "reader"
+        );
 
 
-    scanning =
-        true;
+    scanning = true;
 
 
     try {
@@ -702,20 +655,16 @@ async function startScanner() {
 
             {
 
-                fps:
-                    10,
+                fps:10,
 
                 qrbox:
                 {
-                    width:
-                        280,
+                    width:280,
 
-                    height:
-                        140
+                    height:140
                 },
 
-                aspectRatio:
-                    1.777
+                aspectRatio:1.777
 
             },
 
@@ -727,14 +676,13 @@ async function startScanner() {
                     return;
 
 
-                scanning =
-                    false;
+                scanning = false;
 
 
                 await stopScanner();
 
 
-                await searchProduct(
+                searchProduct(
                     decodedText
                 );
 
@@ -744,9 +692,7 @@ async function startScanner() {
 
             function(errorMessage) {
 
-                /*
-                Ignore scan errors.
-                */
+                // تجاهل أخطاء المسح المؤقتة
 
             }
 
@@ -755,16 +701,14 @@ async function startScanner() {
 
     }
 
-
     catch(error) {
 
 
-        scanning =
-            false;
+        scanning = false;
 
 
         alert(
-            "تعذر تشغيل الكاميرا. تأكد من السماح باستخدام الكاميرا."
+            "تعذر تشغيل الكاميرا."
         );
 
 
@@ -777,34 +721,28 @@ async function startScanner() {
             .getElementById("home")
             .classList.remove("hidden");
 
-
     }
 
 }
 
 
-/*
-========================================
-STOP SCANNER
-========================================
-*/
+/* =====================================================
+   STOP CAMERA
+===================================================== */
 
 async function stopScanner() {
 
 
-    scanning =
-        false;
+    scanning = false;
 
 
     if (scanner) {
-
 
         try {
 
             await scanner.stop();
 
         }
-
         catch(e) {}
 
 
@@ -813,12 +751,10 @@ async function stopScanner() {
             scanner.clear();
 
         }
-
         catch(e) {}
 
 
-        scanner =
-            null;
+        scanner = null;
 
     }
 
@@ -830,96 +766,150 @@ async function stopScanner() {
 }
 
 
-/*
-========================================
-FIND PRODUCT
-========================================
-*/
+/* =====================================================
+   SEARCH PRODUCT - JSONP
+===================================================== */
 
-async function searchProduct(
+function searchProduct(
     barcode
 ) {
 
 
-    try {
+    const callbackName =
+        "barcodeCallback_" +
+        Date.now();
 
 
-        const url =
-            API_URL +
-            "?action=find&barcode=" +
-            encodeURIComponent(
-                barcode
-            );
+    window[callbackName] =
+        function(data) {
 
 
-        const response =
-            await fetch(
-                url,
-                {
-                    method:
-                        "GET",
+            try {
 
-                    cache:
-                        "no-store"
+
+                if (
+                    !data ||
+                    !data.success
+                ) {
+
+                    alert(
+                        "تعذر الاتصال بقاعدة البيانات."
+                    );
+
+                    goHome();
+
+                    return;
+
                 }
-            );
 
 
-        const data =
-            await response.json();
+                if (!data.found) {
+
+                    alert(
+                        "⚠️ الصنف غير موجود\n\n" +
+                        "Barcode:\n" +
+                        barcode
+                    );
+
+                    goHome();
+
+                    return;
+
+                }
 
 
-        if (!data.found) {
+                currentProduct =
+                    data.product;
 
 
-            alert(
-                "⚠️ الصنف غير موجود\n\nBarcode:\n" +
-                barcode
-            );
+                showProduct();
 
 
-            document
-                .getElementById("home")
-                .classList.remove("hidden");
+            }
 
 
-            return;
-
-        }
+            finally {
 
 
-        currentProduct =
-            data.product;
+                delete window[
+                    callbackName
+                ];
 
 
-        showProduct();
+                const script =
+                    document.getElementById(
+                        "barcodeLookupScript"
+                    );
 
 
-    }
+                if (script) {
+
+                    script.remove();
+
+                }
+
+            }
+
+        };
 
 
-    catch(error) {
-
-
-        alert(
-            "حدث خطأ في الاتصال بقاعدة البيانات."
+    const script =
+        document.createElement(
+            "script"
         );
 
 
-        document
-            .getElementById("home")
-            .classList.remove("hidden");
+    script.id =
+        "barcodeLookupScript";
 
-    }
+
+    script.src =
+        API_URL +
+        "?action=find" +
+        "&barcode=" +
+        encodeURIComponent(
+            barcode
+        ) +
+        "&callback=" +
+        callbackName +
+        "&t=" +
+        Date.now();
+
+
+    script.onerror =
+        function() {
+
+
+            alert(
+                "تعذر الاتصال بقاعدة البيانات."
+            );
+
+
+            goHome();
+
+
+            delete window[
+                callbackName
+            ];
+
+
+            script.remove();
+
+        };
+
+
+    document
+        .body
+        .appendChild(
+            script
+        );
 
 }
 
 
-/*
-========================================
-SHOW PRODUCT
-========================================
-*/
+/* =====================================================
+   SHOW PRODUCT
+===================================================== */
 
 function showProduct() {
 
@@ -975,11 +965,9 @@ function showProduct() {
 }
 
 
-/*
-========================================
-OPEN TRANSACTION
-========================================
-*/
+/* =====================================================
+   OPEN TRANSACTION
+===================================================== */
 
 function openTransaction(
     action
@@ -1012,20 +1000,23 @@ function openTransaction(
         .getElementById(
             "quantity"
         )
-        .value =
-        "";
+        .value = "";
+
+
+    document
+        .getElementById(
+            "transactionMessage"
+        )
+        .className = "";
 
 
     const titles = {
 
-
         receive:
             "📥 استلام بضاعة",
 
-
         issue:
             "📤 صرف بضاعة",
-
 
         count:
             "📊 جرد المخزون"
@@ -1056,22 +1047,12 @@ function openTransaction(
         .textContent =
         currentProduct.currentStock;
 
-
-    document
-        .getElementById(
-            "transactionMessage"
-        )
-        .innerHTML =
-        "";
-
 }
 
 
-/*
-========================================
-SUBMIT TRANSACTION
-========================================
-*/
+/* =====================================================
+   SUBMIT TRANSACTION
+===================================================== */
 
 function submitTransaction() {
 
@@ -1089,16 +1070,27 @@ function submitTransaction() {
     if (
         !Number.isFinite(
             quantity
-        ) ||
-        quantity < 0
+        )
     ) {
-
 
         showMessage(
             "أدخل كمية صحيحة.",
             "error"
         );
 
+        return;
+
+    }
+
+
+    if (
+        quantity < 0
+    ) {
+
+        showMessage(
+            "الكمية لا يمكن أن تكون سالبة.",
+            "error"
+        );
 
         return;
 
@@ -1110,12 +1102,10 @@ function submitTransaction() {
         quantity <= 0
     ) {
 
-
         showMessage(
             "يجب أن تكون الكمية أكبر من صفر.",
             "error"
         );
-
 
         return;
 
@@ -1125,15 +1115,15 @@ function submitTransaction() {
     if (
         currentAction === "issue" &&
         quantity >
-        currentProduct.currentStock
+        Number(
+            currentProduct.currentStock
+        )
     ) {
 
-
         showMessage(
-            "⚠️ الكمية المطلوبة أكبر من الرصيد الحالي.",
+            "⚠️ الكمية أكبر من الرصيد الحالي.",
             "error"
         );
-
 
         return;
 
@@ -1147,8 +1137,7 @@ function submitTransaction() {
             );
 
 
-    button.disabled =
-        true;
+    button.disabled = true;
 
 
     button.textContent =
@@ -1156,7 +1145,7 @@ function submitTransaction() {
 
 
     /*
-    Create hidden form
+      Hidden POST form
     */
 
     const form =
@@ -1180,10 +1169,6 @@ function submitTransaction() {
     form.style.display =
         "none";
 
-
-    /*
-    Form fields
-    */
 
     addHiddenField(
         form,
@@ -1227,37 +1212,32 @@ function submitTransaction() {
         );
 
 
-    /*
-    Submit
-    */
-
     form.submit();
 
-
-    /*
-    Remove form
-    */
 
     form.remove();
 
 
     /*
-    Wait for Apps Script
+      بعد إعطاء Apps Script وقتًا للتحديث،
+      نعيد قراءة الرصيد.
     */
 
     setTimeout(
-        refreshProductAfterTransaction,
-        1500
+        function() {
+
+            refreshProductAfterTransaction();
+
+        },
+        1800
     );
 
 }
 
 
-/*
-========================================
-ADD HIDDEN FIELD
-========================================
-*/
+/* =====================================================
+   ADD FORM FIELD
+===================================================== */
 
 function addHiddenField(
     form,
@@ -1291,132 +1271,184 @@ function addHiddenField(
 }
 
 
-/*
-========================================
-REFRESH PRODUCT
-========================================
-*/
+/* =====================================================
+   REFRESH AFTER TRANSACTION
+===================================================== */
 
-async function refreshProductAfterTransaction() {
+function refreshProductAfterTransaction() {
 
 
-    try {
+    const barcode =
+        currentProduct.barcode;
 
 
-        const url =
-            API_URL +
-            "?action=find&barcode=" +
-            encodeURIComponent(
-                currentProduct.barcode
-            ) +
-            "&t=" +
-            Date.now();
+    const callbackName =
+        "refreshCallback_" +
+        Date.now();
 
 
-        const response =
-            await fetch(
-                url,
-                {
-                    method:
-                        "GET",
+    window[callbackName] =
+        function(data) {
 
-                    cache:
-                        "no-store"
+
+            try {
+
+
+                if (
+                    !data ||
+                    !data.success ||
+                    !data.found
+                ) {
+
+                    showMessage(
+                        "تعذر قراءة الرصيد الجديد.",
+                        "error"
+                    );
+
+                    resetConfirmButton();
+
+                    return;
+
                 }
-            );
 
 
-        const data =
-            await response.json();
+                currentProduct =
+                    data.product;
 
 
-        if (
-            !data.success ||
-            !data.found
-        ) {
+                showMessage(
+
+                    "✅ تمت العملية بنجاح\n" +
+                    "الرصيد الجديد: " +
+                    currentProduct.currentStock,
+
+                    "success"
+
+                );
+
+
+                resetConfirmButton();
+
+
+                setTimeout(
+                    function() {
+
+                        document
+                            .getElementById(
+                                "transactionCard"
+                            )
+                            .classList
+                            .add(
+                                "hidden"
+                            );
+
+
+                        showProduct();
+
+                    },
+                    1500
+                );
+
+
+            }
+
+
+            finally {
+
+
+                delete window[
+                    callbackName
+                ];
+
+
+                const script =
+                    document.getElementById(
+                        "refreshProductScript"
+                    );
+
+
+                if (script) {
+
+                    script.remove();
+
+                }
+
+            }
+
+        };
+
+
+    const script =
+        document.createElement(
+            "script"
+        );
+
+
+    script.id =
+        "refreshProductScript";
+
+
+    script.src =
+        API_URL +
+        "?action=find" +
+        "&barcode=" +
+        encodeURIComponent(
+            barcode
+        ) +
+        "&callback=" +
+        callbackName +
+        "&t=" +
+        Date.now();
+
+
+    script.onerror =
+        function() {
 
 
             showMessage(
-                "تعذر قراءة الرصيد الجديد.",
-                "error"
+
+                "تم إرسال العملية، " +
+                "لكن تعذر قراءة الرصيد الجديد.",
+
+                "warning"
+
             );
 
 
             resetConfirmButton();
 
 
-            return;
-
-        }
-
-
-        currentProduct =
-            data.product;
+            delete window[
+                callbackName
+            ];
 
 
-        showMessage(
-            "✅ تمت العملية بنجاح\nالرصيد الجديد: " +
-            currentProduct.currentStock,
-            "success"
+            script.remove();
+
+        };
+
+
+    document
+        .body
+        .appendChild(
+            script
         );
-
-
-        resetConfirmButton();
-
-
-        setTimeout(
-            function() {
-
-
-                document
-                    .getElementById(
-                        "transactionCard"
-                    )
-                    .classList.add(
-                        "hidden"
-                    );
-
-
-                showProduct();
-
-
-            },
-            1500
-        );
-
-
-    }
-
-
-    catch(error) {
-
-
-        showMessage(
-            "تم إرسال العملية، لكن تعذر قراءة الرصيد الجديد.",
-            "warning"
-        );
-
-
-        resetConfirmButton();
-
-    }
 
 }
 
 
-/*
-========================================
-RESET BUTTON
-========================================
-*/
+/* =====================================================
+   RESET BUTTON
+===================================================== */
 
 function resetConfirmButton() {
 
 
     const button =
-        document.getElementById(
-            "confirmButton"
-        );
+        document
+            .getElementById(
+                "confirmButton"
+            );
 
 
     button.disabled =
@@ -1429,11 +1461,9 @@ function resetConfirmButton() {
 }
 
 
-/*
-========================================
-MESSAGE
-========================================
-*/
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 function showMessage(
     message,
@@ -1442,9 +1472,10 @@ function showMessage(
 
 
     const element =
-        document.getElementById(
-            "transactionMessage"
-        );
+        document
+            .getElementById(
+                "transactionMessage"
+            );
 
 
     element.className =
@@ -1458,11 +1489,9 @@ function showMessage(
 }
 
 
-/*
-========================================
-CANCEL
-========================================
-*/
+/* =====================================================
+   CANCEL
+===================================================== */
 
 function cancelTransaction() {
 
@@ -1479,6 +1508,51 @@ function cancelTransaction() {
     document
         .getElementById(
             "productCard"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome() {
+
+
+    document
+        .getElementById(
+            "scannerCard"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "productCard"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "transactionCard"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "home"
         )
         .classList.remove(
             "hidden"
