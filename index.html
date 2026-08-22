@@ -410,6 +410,7 @@ id="transactionMessage">
 const API_URL =
 "https://script.google.com/macros/s/AKfycby2vB0JJ-yiXS00FgsyTCjtQQ0xkDqVBwP1Y5HmiCDx68RUbEquLZxYRPUU3ZwH4X5gEQ/exec";
 
+
 let scanner = null;
 
 let scanning = false;
@@ -556,11 +557,10 @@ function jsonp(url, callback) {
 
 function testConnection() {
 
-   const url =
-    API_URL +
-    "?action=test" +
-    "&_=" +
-    Date.now();
+    const button =
+        document.getElementById(
+            "testButton"
+        );
 
 
     const status =
