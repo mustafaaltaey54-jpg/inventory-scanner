@@ -15,10 +15,7 @@ content="#111827">
 
 <title>نظام مخزون الموصل</title>
 
-<script
-src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
-</script>
-
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
 <style>
 
@@ -27,76 +24,34 @@ src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
 }
 
 body {
-
     margin: 0;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    background:
-        #f3f4f6;
-
-    color:
-        #111827;
-
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
 }
 
 header {
-
-    background:
-        #111827;
-
-    color:
-        white;
-
-    text-align:
-        center;
-
-    padding:
-        18px;
-
-    font-size:
-        21px;
-
-    font-weight:
-        bold;
-
+    background: #111827;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
 }
 
 .container {
-
-    width:
-        100%;
-
-    max-width:
-        520px;
-
-    margin:
-        auto;
-
-    padding:
-        18px;
-
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    padding: 18px;
 }
 
 .card {
-
-    background:
-        white;
-
-    border-radius:
-        18px;
-
-    padding:
-        20px;
-
-    margin-bottom:
-        16px;
-
-    box-shadow:
-        0 4px 18px rgba(0,0,0,.08);
-
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
 }
 
 .hidden {
@@ -104,99 +59,45 @@ header {
 }
 
 .title {
-
-    text-align:
-        center;
-
-    font-size:
-        24px;
-
-    font-weight:
-        bold;
-
-    margin-bottom:
-        12px;
-
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
 }
 
 .barcode {
-
-    text-align:
-        center;
-
-    color:
-        #6b7280;
-
-    font-size:
-        14px;
-
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
 }
 
 .info {
-
-    background:
-        #f9fafb;
-
-    padding:
-        13px;
-
-    border-radius:
-        12px;
-
-    margin-top:
-        8px;
-
+    background: #f9fafb;
+    padding: 13px;
+    border-radius: 12px;
+    margin-top: 8px;
 }
 
 .stock {
-
-    text-align:
-        center;
-
-    font-size:
-        34px;
-
-    font-weight:
-        bold;
-
-    margin:
-        20px 0 4px;
-
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+    margin: 20px 0 4px;
 }
 
 .stockLabel {
-
-    text-align:
-        center;
-
-    color:
-        #6b7280;
-
+    text-align: center;
+    color: #6b7280;
 }
 
 button {
-
-    width:
-        100%;
-
-    border:
-        0;
-
-    border-radius:
-        14px;
-
-    padding:
-        16px;
-
-    margin-top:
-        10px;
-
-    font-size:
-        18px;
-
-    font-weight:
-        bold;
-
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 button:disabled {
@@ -204,146 +105,72 @@ button:disabled {
 }
 
 .primary {
-
-    background:
-        #111827;
-
-    color:
-        white;
-
+    background: #111827;
+    color: white;
 }
 
 .receive {
-
-    background:
-        #16a34a;
-
-    color:
-        white;
-
+    background: #16a34a;
+    color: white;
 }
 
 .issue {
-
-    background:
-        #dc2626;
-
-    color:
-        white;
-
+    background: #dc2626;
+    color: white;
 }
 
 .count {
-
-    background:
-        #2563eb;
-
-    color:
-        white;
-
+    background: #2563eb;
+    color: white;
 }
 
 .secondary {
-
-    background:
-        #e5e7eb;
-
-    color:
-        #111827;
-
+    background: #e5e7eb;
+    color: #111827;
 }
 
 input {
-
-    width:
-        100%;
-
-    padding:
-        16px;
-
-    font-size:
-        22px;
-
-    text-align:
-        center;
-
-    border:
-        1px solid #d1d5db;
-
-    border-radius:
-        12px;
-
+    width: 100%;
+    padding: 16px;
+    font-size: 22px;
+    text-align: center;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
 }
 
 .message {
-
-    margin-top:
-        12px;
-
-    border-radius:
-        12px;
-
-    padding:
-        14px;
-
-    text-align:
-        center;
-
-    white-space:
-        pre-line;
-
+    margin-top: 12px;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    white-space: pre-line;
 }
 
 .success {
-
-    background:
-        #dcfce7;
-
-    color:
-        #166534;
-
+    background: #dcfce7;
+    color: #166534;
 }
 
 .error {
-
-    background:
-        #fee2e2;
-
-    color:
-        #991b1b;
-
+    background: #fee2e2;
+    color: #991b1b;
 }
 
 .warning {
-
-    background:
-        #fef3c7;
-
-    color:
-        #92400e;
-
+    background: #fef3c7;
+    color: #92400e;
 }
 
 #reader {
-
-    width:
-        100%;
-
-    border-radius:
-        16px;
-
-    overflow:
-        hidden;
-
-    background:
-        #000;
-
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -351,23 +178,18 @@ input {
 نظام مخزون الموصل
 </header>
 
-
 <div class="container">
 
 
-<!-- =====================================================
-     HOME
-===================================================== -->
+<!-- HOME -->
 
 <section
 id="home"
 class="card">
 
-
 <div class="title">
 📦 المخزون
 </div>
-
 
 <button
 class="primary"
@@ -377,22 +199,16 @@ onclick="startScanner()">
 
 </button>
 
-
 </section>
 
 
-
-<!-- =====================================================
-     SCANNER
-===================================================== -->
+<!-- SCANNER -->
 
 <section
 id="scannerCard"
 class="card hidden">
 
-
 <div id="reader"></div>
-
 
 <button
 class="secondary"
@@ -402,19 +218,14 @@ onclick="stopScanner()">
 
 </button>
 
-
 </section>
 
 
-
-<!-- =====================================================
-     PRODUCT
-===================================================== -->
+<!-- PRODUCT -->
 
 <section
 id="productCard"
 class="card hidden">
-
 
 <div
 id="productName"
@@ -422,13 +233,11 @@ class="title">
 -
 </div>
 
-
 <div
 id="productBarcode"
 class="barcode">
 -
 </div>
-
 
 <div class="info">
 
@@ -441,7 +250,6 @@ id="productCategory">
 
 </div>
 
-
 <div class="info">
 
 الوحدة:
@@ -453,18 +261,15 @@ id="productUnit">
 
 </div>
 
-
 <div
 id="productStock"
 class="stock">
 0
 </div>
 
-
 <div class="stockLabel">
 الرصيد الحالي
 </div>
-
 
 <button
 class="receive"
@@ -474,7 +279,6 @@ onclick="openTransaction('receive')">
 
 </button>
 
-
 <button
 class="issue"
 onclick="openTransaction('issue')">
@@ -482,7 +286,6 @@ onclick="openTransaction('issue')">
 📤 صرف
 
 </button>
-
 
 <button
 class="count"
@@ -492,7 +295,6 @@ onclick="openTransaction('count')">
 
 </button>
 
-
 <button
 class="secondary"
 onclick="startScanner()">
@@ -501,26 +303,20 @@ onclick="startScanner()">
 
 </button>
 
-
 </section>
 
 
-
-<!-- =====================================================
-     TRANSACTION
-===================================================== -->
+<!-- TRANSACTION -->
 
 <section
 id="transactionCard"
 class="card hidden">
-
 
 <div
 id="transactionTitle"
 class="title">
 -
 </div>
-
 
 <div class="info">
 
@@ -533,7 +329,6 @@ id="transactionProduct">
 
 </div>
 
-
 <div class="info">
 
 الرصيد الحالي:
@@ -545,9 +340,7 @@ id="transactionStock">
 
 </div>
 
-
 <br>
-
 
 <input
 id="quantity"
@@ -556,7 +349,6 @@ min="0"
 step="1"
 inputmode="numeric"
 placeholder="أدخل الكمية">
-
 
 <button
 id="confirmButton"
@@ -567,7 +359,6 @@ onclick="submitTransaction()">
 
 </button>
 
-
 <button
 class="secondary"
 onclick="cancelTransaction()">
@@ -576,38 +367,33 @@ onclick="cancelTransaction()">
 
 </button>
 
-
 <div
 id="transactionMessage">
 </div>
-
 
 </section>
 
 </div>
 
 
-
 <script>
 
 /* =====================================================
-   API URL
+   NEW APPS SCRIPT URL
 ===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycby2vB0JJ-yiXS00FgsyTCjtQQ0xkDqVBwP1Y5HmiCDx68RUbEquLZxYRPUU3ZwH4X5gEQ/exec";
 
+
 let scanner = null;
-
 let scanning = false;
-
 let currentProduct = null;
-
 let currentAction = null;
 
 
 /* =====================================================
-   START SCANNER
+   CAMERA
 ===================================================== */
 
 async function startScanner() {
@@ -620,12 +406,10 @@ async function startScanner() {
         .getElementById("scannerCard")
         .classList.remove("hidden");
 
-
     scanner =
         new Html5Qrcode("reader");
 
     scanning = true;
-
 
     try {
 
@@ -661,31 +445,26 @@ async function startScanner() {
 
             },
 
-            function() {
-                // ignore scanner errors
-            }
+            function() {}
 
         );
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         scanning = false;
 
         alert(
-            "تعذر تشغيل الكاميرا. تأكد من السماح باستخدام الكاميرا."
+            "تعذر تشغيل الكاميرا."
         );
 
         showHome();
 
     }
-
 }
 
 
 /* =====================================================
-   STOP SCANNER
+   STOP CAMERA
 ===================================================== */
 
 async function stopScanner() {
@@ -708,24 +487,22 @@ async function stopScanner() {
     document
         .getElementById("scannerCard")
         .classList.add("hidden");
-
 }
 
 
 /* =====================================================
-   JSONP REQUEST
+   JSONP
 ===================================================== */
 
-function jsonpRequest(
-    url,
-    callback
-) {
+function jsonp(url, callback) {
 
     const callbackName =
-        "cb_" +
+        "inventoryCallback_" +
         Date.now() +
         "_" +
-        Math.floor(Math.random() * 100000);
+        Math.floor(
+            Math.random() * 100000
+        );
 
 
     const script =
@@ -735,20 +512,24 @@ function jsonpRequest(
     let finished = false;
 
 
-    function cleanup() {
+    const cleanup =
+        function() {
 
-        if (finished) {
-            return;
-        }
+            if (finished) {
+                return;
+            }
 
-        finished = true;
+            finished = true;
 
-        delete window[callbackName];
+            try {
+                delete window[callbackName];
+            } catch (e) {}
 
-        if (script.parentNode) {
-            script.parentNode.removeChild(script);
-        }
-    }
+            if (script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
+
+        };
 
 
     window[callbackName] =
@@ -767,7 +548,7 @@ function jsonpRequest(
     script.src =
         url +
         (
-            url.includes("?")
+            url.indexOf("?") >= 0
                 ? "&"
                 : "?"
         ) +
@@ -775,7 +556,7 @@ function jsonpRequest(
         encodeURIComponent(
             callbackName
         ) +
-        "&t=" +
+        "&_=" +
         Date.now();
 
 
@@ -794,29 +575,29 @@ function jsonpRequest(
         };
 
 
-    document
-        .body
-        .appendChild(script);
+    document.body.appendChild(
+        script
+    );
 
 }
 
 
 /* =====================================================
-   SEARCH PRODUCT
+   SEARCH
 ===================================================== */
 
-function searchProduct(
-    barcode
-) {
+function searchProduct(barcode) {
 
     const url =
         API_URL +
         "?action=find" +
         "&barcode=" +
-        encodeURIComponent(barcode);
+        encodeURIComponent(
+            barcode
+        );
 
 
-    jsonpRequest(
+    jsonp(
         url,
         function(error, data) {
 
@@ -838,7 +619,7 @@ function searchProduct(
             ) {
 
                 alert(
-                    "حدث خطأ: " +
+                    "خطأ: " +
                     (
                         data &&
                         data.error
@@ -887,36 +668,30 @@ function showProduct() {
 
     hideAll();
 
-
     document
         .getElementById("productName")
         .textContent =
         currentProduct.name;
-
 
     document
         .getElementById("productBarcode")
         .textContent =
         currentProduct.barcode;
 
-
     document
         .getElementById("productCategory")
         .textContent =
         currentProduct.category;
-
 
     document
         .getElementById("productUnit")
         .textContent =
         currentProduct.unit;
 
-
     document
         .getElementById("productStock")
         .textContent =
         currentProduct.currentStock;
-
 
     document
         .getElementById("productCard")
@@ -929,16 +704,12 @@ function showProduct() {
    OPEN TRANSACTION
 ===================================================== */
 
-function openTransaction(
-    action
-) {
+function openTransaction(action) {
 
     currentAction =
         action;
 
-
     hideAll();
-
 
     const titles = {
 
@@ -979,15 +750,15 @@ function openTransaction(
 
     document
         .getElementById("transactionMessage")
-        .className = "";
+        .textContent = "";
 
 
     document
         .getElementById("transactionMessage")
-        .textContent = "";
+        .className = "";
 
 
-    resetConfirmButton();
+    resetButton();
 
 
     document
@@ -1011,7 +782,9 @@ function submitTransaction() {
         );
 
 
-    if (!Number.isFinite(quantity)) {
+    if (
+        !Number.isFinite(quantity)
+    ) {
 
         showMessage(
             "أدخل كمية صحيحة.",
@@ -1066,7 +839,9 @@ function submitTransaction() {
 
     const button =
         document
-            .getElementById("confirmButton");
+            .getElementById(
+                "confirmButton"
+            );
 
 
     button.disabled = true;
@@ -1097,7 +872,7 @@ function submitTransaction() {
         encodeURIComponent("");
 
 
-    jsonpRequest(
+    jsonp(
         url,
         function(error, data) {
 
@@ -1108,7 +883,7 @@ function submitTransaction() {
                     "error"
                 );
 
-                resetConfirmButton();
+                resetButton();
 
                 return;
             }
@@ -1120,6 +895,7 @@ function submitTransaction() {
             ) {
 
                 showMessage(
+
                     "فشلت العملية:\n" +
                     (
                         data &&
@@ -1127,21 +903,15 @@ function submitTransaction() {
                             ? data.error
                             : "Unknown error"
                     ),
+
                     "error"
+
                 );
 
-                resetConfirmButton();
+                resetButton();
 
                 return;
             }
-
-
-            /*
-              Use the actual stock returned
-              from Google Sheets.
-            */
-
-            let newStock;
 
 
             if (
@@ -1149,7 +919,7 @@ function submitTransaction() {
                 data.transaction.stockAfter !== undefined
             ) {
 
-                newStock =
+                currentProduct.currentStock =
                     Number(
                         data.transaction.stockAfter
                     );
@@ -1158,23 +928,22 @@ function submitTransaction() {
 
             else {
 
-                newStock =
-                    getCalculatedStock(
+                currentProduct.currentStock =
+                    calculateNewStock(
                         quantity
                     );
 
             }
 
 
-            currentProduct.currentStock =
-                newStock;
-
-
             showMessage(
+
                 "✅ تمت العملية بنجاح\n" +
                 "الرصيد الجديد: " +
-                newStock,
+                currentProduct.currentStock,
+
                 "success"
+
             );
 
 
@@ -1185,11 +954,9 @@ function submitTransaction() {
             setTimeout(
                 function() {
 
-                    hideAll();
-
                     showProduct();
 
-                    resetConfirmButton();
+                    resetButton();
 
                 },
                 1500
@@ -1202,10 +969,10 @@ function submitTransaction() {
 
 
 /* =====================================================
-   CALCULATE FALLBACK STOCK
+   NEW STOCK
 ===================================================== */
 
-function getCalculatedStock(
+function calculateNewStock(
     quantity
 ) {
 
@@ -1233,25 +1000,16 @@ function getCalculatedStock(
     }
 
 
-    if (
-        currentAction === "count"
-    ) {
-
-        return quantity;
-
-    }
-
-
-    return oldStock;
+    return quantity;
 
 }
 
 
 /* =====================================================
-   RESET BUTTON
+   UI
 ===================================================== */
 
-function resetConfirmButton() {
+function resetButton() {
 
     const button =
         document
@@ -1259,10 +1017,7 @@ function resetConfirmButton() {
                 "confirmButton"
             );
 
-
-    button.disabled =
-        false;
-
+    button.disabled = false;
 
     button.textContent =
         "تأكيد";
@@ -1270,49 +1025,33 @@ function resetConfirmButton() {
 }
 
 
-/* =====================================================
-   MESSAGE
-===================================================== */
-
 function showMessage(
-    text,
+    message,
     type
 ) {
 
-    const message =
+    const element =
         document
             .getElementById(
                 "transactionMessage"
             );
 
-
-    message.className =
+    element.className =
         "message " +
         type;
 
-
-    message.textContent =
-        text;
+    element.textContent =
+        message;
 
 }
 
 
-/* =====================================================
-   CANCEL TRANSACTION
-===================================================== */
-
 function cancelTransaction() {
-
-    hideAll();
 
     showProduct();
 
 }
 
-
-/* =====================================================
-   SHOW HOME
-===================================================== */
 
 function showHome() {
 
@@ -1325,23 +1064,16 @@ function showHome() {
 }
 
 
-/* =====================================================
-   HIDE ALL
-===================================================== */
-
 function hideAll() {
 
-    const ids = [
-
+    [
         "home",
         "scannerCard",
         "productCard",
         "transactionCard"
+    ]
 
-    ];
-
-
-    ids.forEach(
+    .forEach(
         function(id) {
 
             document
