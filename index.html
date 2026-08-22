@@ -1,30 +1,818 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827"><title>مخزون الموصل</title>
-<style>*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f4f6;color:#111827}header{background:#111827;color:#fff;padding:18px;text-align:center;font-size:21px;font-weight:700}main{max-width:520px;margin:auto;padding:16px}.card{background:#fff;border-radius:18px;padding:18px;box-shadow:0 3px 15px #0001;margin-bottom:15px}button{width:100%;border:0;border-radius:13px;padding:15px;font-size:17px;font-weight:700;cursor:pointer;margin-top:9px}.primary{background:#111827;color:#fff}.receive{background:#166534;color:#fff}.issue{background:#b91c1c;color:#fff}.count{background:#1d4ed8;color:#fff}.secondary{background:#e5e7eb;color:#111827}.hidden{display:none}.small{font-size:13px;color:#6b7280;line-height:1.7;text-align:center}.result{text-align:center}.name{font-size:23px;font-weight:800;margin:8px}.stock{font-size:32px;font-weight:800;margin:12px}.label{font-size:13px;color:#6b7280}.code{font-family:monospace;font-size:16px;text-align:center}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions button{margin:0}.full{grid-column:1/-1}input{width:100%;padding:14px;border:1px solid #d1d5db;border-radius:12px;font-size:18px;text-align:center}#reader{width:100%;overflow:hidden;border-radius:16px;background:#000;min-height:280px}.status{padding:12px;border-radius:12px;background:#f3f4f6;margin-top:10px;text-align:center}</style>
-</head><body>
-<header>نظام مخزون الموصل</header><main>
-<section id="home" class="card"><div class="result"><div style="font-size:24px">📦 قارئ المخزون</div><p class="small">امسح الباركود للبحث عن الصنف في Google Sheets.</p></div><button id="startBtn" class="primary">📷 مسح الباركود</button></section>
-<section id="scannerCard" class="card hidden"><div id="reader"></div><div id="status" class="status">جاري تشغيل الكاميرا...</div><button id="stopBtn" class="secondary">إيقاف الكاميرا</button></section>
-<section id="loading" class="card hidden"><div class="result">🔎 جاري البحث عن الصنف...</div></section>
-<section id="productCard" class="card hidden"><div class="label">الصنف</div><div id="name" class="name"></div><div class="label">الباركود</div><div id="barcode" class="code"></div><div class="label" style="margin-top:12px">الرصيد الحالي</div><div id="stock" class="stock"></div><div id="meta" class="small"></div><div class="actions" style="margin-top:12px"><button class="receive" onclick="showAction('Receive')">📥 استلام</button><button class="issue" onclick="showAction('Issue')">📤 صرف</button><button class="count full" onclick="showAction('Count')">📊 جرد</button></div><button class="secondary" onclick="startScanner()">📷 مسح صنف آخر</button></section>
-<section id="actionCard" class="card hidden"><div id="actionTitle" class="result" style="font-size:21px;font-weight:800"></div><p class="small">الصنف: <b id="actionItem"></b><br>الرصيد الحالي: <b id="actionStock"></b></p><input id="qty" type="number" min="0" step="1" placeholder="أدخل الكمية"><button id="confirmBtn" class="primary">تأكيد</button><button class="secondary" onclick="closeAction()">إلغاء</button><div id="actionStatus" class="status hidden"></div></section>
-<section id="notFound" class="card hidden"><div class="result" style="font-size:22px;font-weight:800">⚠️ الصنف غير موجود</div><p class="small">الباركود:</p><div id="notFoundCode" class="code"></div><button class="primary" onclick="startScanner()">📷 مسح مرة أخرى</button></section>
-</main>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+
+<title>نظام مخزون الموصل</title>
+
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 520px;
+    margin: auto;
+    padding: 18px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.primary {
+    background: #111827;
+    color: white;
+}
+
+.receive {
+    background: #16a34a;
+    color: white;
+}
+
+.issue {
+    background: #dc2626;
+    color: white;
+}
+
+.count {
+    background: #2563eb;
+    color: white;
+}
+
+.secondary {
+    background: #e5e7eb;
+}
+
+.hidden {
+    display: none;
+}
+
+#reader {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.barcode {
+    text-align: center;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.stock {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.info {
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.message {
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    نظام مخزون الموصل
+</header>
+
+<div class="container">
+
+    <!-- HOME -->
+
+    <div id="home" class="card">
+
+        <div class="title">
+            📦 المخزون
+        </div>
+
+        <button class="primary" onclick="startScanner()">
+            📷 مسح الباركود
+        </button>
+
+    </div>
+
+
+    <!-- SCANNER -->
+
+    <div id="scannerCard" class="card hidden">
+
+        <div id="reader"></div>
+
+        <button class="secondary" onclick="stopScanner()">
+            إلغاء
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCT -->
+
+    <div id="productCard" class="card hidden">
+
+        <div class="title" id="productName">
+            -
+        </div>
+
+        <div class="barcode" id="productBarcode">
+            -
+        </div>
+
+        <div class="info">
+            التصنيف:
+            <strong id="productCategory">-</strong>
+        </div>
+
+        <div class="info">
+            الوحدة:
+            <strong id="productUnit">-</strong>
+        </div>
+
+        <div class="stock">
+            <span id="productStock">0</span>
+        </div>
+
+        <div style="text-align:center">
+            الرصيد الحالي
+        </div>
+
+        <button class="receive" onclick="openTransaction('receive')">
+            📥 استلام
+        </button>
+
+        <button class="issue" onclick="openTransaction('issue')">
+            📤 صرف
+        </button>
+
+        <button class="count" onclick="openTransaction('count')">
+            📊 جرد
+        </button>
+
+        <button class="secondary" onclick="startScanner()">
+            📷 مسح صنف آخر
+        </button>
+
+    </div>
+
+
+    <!-- TRANSACTION -->
+
+    <div id="transactionCard" class="card hidden">
+
+        <div class="title" id="transactionTitle">
+            -
+        </div>
+
+        <div class="info">
+            الصنف:
+            <strong id="transactionProduct">
+                -
+            </strong>
+        </div>
+
+        <div class="info">
+            الرصيد الحالي:
+            <strong id="transactionStock">
+                0
+            </strong>
+        </div>
+
+        <br>
+
+        <input
+            id="quantity"
+            type="number"
+            min="0"
+            inputmode="numeric"
+            placeholder="أدخل الكمية"
+        >
+
+        <button
+            id="confirmButton"
+            class="primary"
+            onclick="submitTransaction()"
+        >
+            تأكيد
+        </button>
+
+        <button
+            class="secondary"
+            onclick="cancelTransaction()"
+        >
+            إلغاء
+        </button>
+
+        <div id="transactionMessage"></div>
+
+    </div>
+
+</div>
+
+
 <script>
-const API='https://script.google.com/macros/s/AKfycbxjArHofijvSsT8gb_YiVKziygG2z6YDeMVOhOetH4PIG5svVZQ2MBRJoAMwTBI0RvG/exec';
-let scanner=null,running=false,current=null,currentAction=null;
-const $=id=>document.getElementById(id);
-function hideAll(){['scannerCard','loading','productCard','actionCard','notFound'].forEach(id=>$(id).classList.add('hidden'));}
-async function startScanner(){hideAll();$('home').classList.add('hidden');$('scannerCard').classList.remove('hidden');$('status').textContent='جاري طلب صلاحية الكاميرا...';if(running)return;try{scanner=new Html5Qrcode('reader');running=true;await scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:280,height:140},aspectRatio:1.777,formatsToSupport:[Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.CODE_39,Html5QrcodeSupportedFormats.CODE_93,Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.QR_CODE]},onScan,onScanError);$('status').textContent='وجّه الكاميرا إلى الباركود';}catch(e){running=false;$('status').textContent='تعذر تشغيل الكاميرا. تأكد من صلاحية الكاميرا.';console.error(e)}}
-function onScanError(){}
-async function onScan(text){if(!running)return;running=false;try{await scanner.stop();scanner.clear()}catch(e){}hideAll();$('loading').classList.remove('hidden');try{const r=await fetch(API+'?barcode='+encodeURIComponent(text),{cache:'no-store'});const data=await r.json();$('loading').classList.add('hidden');if(data.found){current=data.product;showProduct()}else{$('notFoundCode').textContent=text;$('notFound').classList.remove('hidden')}}catch(e){$('loading').classList.add('hidden');alert('تعذر الاتصال بقاعدة البيانات. تحقق من الإنترنت.');$('home').classList.remove('hidden');}}
-function showProduct(){$('name').textContent=current.name;$('barcode').textContent=current.barcode;$('stock').textContent=(current.currentStock??0)+' '+(current.unit||'');$('meta').textContent='التصنيف: '+(current.category||'-')+' | الحد الأدنى: '+(current.minimumStock??0);$('productCard').classList.remove('hidden')}
-function showAction(type){currentAction=type;$('actionCard').classList.remove('hidden');$('productCard').classList.add('hidden');$('actionItem').textContent=current.name;$('actionStock').textContent=(current.currentStock??0)+' '+(current.unit||'');$('qty').value='';$('actionStatus').classList.add('hidden');$('actionTitle').textContent=type==='Receive'?'📥 استلام بضاعة':type==='Issue'?'📤 صرف بضاعة':'📊 تسجيل جرد';$('confirmBtn').onclick=()=>alert('هذه النسخة تربط البحث فقط. سنضيف تنفيذ الاستلام والصرف والجرد في النسخة التالية.');}
-function closeAction(){$('actionCard').classList.add('hidden');$('productCard').classList.remove('hidden')}
-async function stopScanner(){if(scanner&&running){running=false;try{await scanner.stop()}catch(e){}try{scanner.clear()}catch(e){}}hideAll();$('home').classList.remove('hidden')}
-$('startBtn').onclick=startScanner;$('stopBtn').onclick=stopScanner;
-</script></body></html>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxjArHofijvSsT8gb_YiVKziygG2z6YDeMVOhOetH4PIG5svVZQ2MBRJoAMwTBI0RvG/exec";
+
+
+let scanner = null;
+let scanning = false;
+
+let currentProduct = null;
+let currentAction = null;
+
+
+/* =========================
+   SCANNER
+========================= */
+
+async function startScanner() {
+
+    stopScanner();
+
+    document
+        .getElementById("home")
+        .classList.add("hidden");
+
+    document
+        .getElementById("productCard")
+        .classList.add("hidden");
+
+    document
+        .getElementById("transactionCard")
+        .classList.add("hidden");
+
+    document
+        .getElementById("scannerCard")
+        .classList.remove("hidden");
+
+    scanner = new Html5Qrcode("reader");
+
+    scanning = true;
+
+    try {
+
+        await scanner.start(
+
+            { facingMode: "environment" },
+
+            {
+                fps: 10,
+                qrbox: {
+                    width: 280,
+                    height: 140
+                }
+            },
+
+            async function(decodedText) {
+
+                if (!scanning)
+                    return;
+
+                scanning = false;
+
+                await stopScanner();
+
+                searchProduct(decodedText);
+
+            },
+
+            function(errorMessage) {
+                // تجاهل أخطاء البحث المستمرة
+            }
+
+        );
+
+    }
+
+    catch(error) {
+
+        scanning = false;
+
+        alert(
+            "تعذر تشغيل الكاميرا. تأكد من السماح باستخدام الكاميرا."
+        );
+
+    }
+}
+
+
+/* =========================
+   STOP CAMERA
+========================= */
+
+async function stopScanner() {
+
+    scanning = false;
+
+    if (scanner) {
+
+        try {
+            await scanner.stop();
+        }
+        catch(e) {}
+
+        try {
+            scanner.clear();
+        }
+        catch(e) {}
+
+        scanner = null;
+    }
+
+    document
+        .getElementById("scannerCard")
+        .classList.add("hidden");
+}
+
+
+/* =========================
+   FIND PRODUCT
+========================= */
+
+async function searchProduct(barcode) {
+
+    try {
+
+        const url =
+            API_URL +
+            "?action=find&barcode=" +
+            encodeURIComponent(barcode);
+
+        const response =
+            await fetch(url);
+
+        const data =
+            await response.json();
+
+        if (!data.found) {
+
+            alert(
+                "⚠️ الصنف غير موجود\n\nBarcode:\n" +
+                barcode
+            );
+
+            document
+                .getElementById("home")
+                .classList.remove("hidden");
+
+            return;
+        }
+
+        currentProduct =
+            data.product;
+
+        showProduct();
+
+    }
+
+    catch(error) {
+
+        alert(
+            "حدث خطأ في الاتصال بقاعدة البيانات."
+        );
+
+        document
+            .getElementById("home")
+            .classList.remove("hidden");
+    }
+}
+
+
+/* =========================
+   SHOW PRODUCT
+========================= */
+
+function showProduct() {
+
+    document
+        .getElementById("productName")
+        .textContent =
+        currentProduct.name;
+
+    document
+        .getElementById("productBarcode")
+        .textContent =
+        currentProduct.barcode;
+
+    document
+        .getElementById("productCategory")
+        .textContent =
+        currentProduct.category;
+
+    document
+        .getElementById("productUnit")
+        .textContent =
+        currentProduct.unit;
+
+    document
+        .getElementById("productStock")
+        .textContent =
+        currentProduct.currentStock;
+
+    document
+        .getElementById("productCard")
+        .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   OPEN TRANSACTION
+========================= */
+
+function openTransaction(action) {
+
+    currentAction = action;
+
+    document
+        .getElementById("productCard")
+        .classList.add("hidden");
+
+    document
+        .getElementById("transactionCard")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("quantity")
+        .value = "";
+
+    const titles = {
+
+        receive:
+            "📥 استلام بضاعة",
+
+        issue:
+            "📤 صرف بضاعة",
+
+        count:
+            "📊 جرد المخزون"
+
+    };
+
+    document
+        .getElementById("transactionTitle")
+        .textContent =
+        titles[action];
+
+    document
+        .getElementById("transactionProduct")
+        .textContent =
+        currentProduct.name;
+
+    document
+        .getElementById("transactionStock")
+        .textContent =
+        currentProduct.currentStock;
+
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+async function submitTransaction() {
+
+    const quantity =
+        Number(
+            document
+                .getElementById("quantity")
+                .value
+        );
+
+    if (
+        !Number.isFinite(quantity) ||
+        quantity < 0
+    ) {
+
+        showMessage(
+            "أدخل كمية صحيحة.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (
+        currentAction !== "count" &&
+        quantity <= 0
+    ) {
+
+        showMessage(
+            "يجب أن تكون الكمية أكبر من صفر.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (
+        currentAction === "issue" &&
+        quantity > currentProduct.currentStock
+    ) {
+
+        showMessage(
+            "⚠️ الكمية المطلوبة أكبر من الرصيد الحالي.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (currentAction === "count") {
+
+        if (quantity < 0) {
+
+            showMessage(
+                "الكمية لا يمكن أن تكون سالبة.",
+                "error"
+            );
+
+            return;
+        }
+    }
+
+
+    const button =
+        document.getElementById(
+            "confirmButton"
+        );
+
+    button.disabled = true;
+
+    button.textContent =
+        "جاري التسجيل...";
+
+
+    const payload = {
+
+        action: currentAction,
+
+        barcode:
+            currentProduct.barcode,
+
+        quantity: quantity,
+
+        user: "Mobile User",
+
+        notes: ""
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_URL,
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body:
+                        JSON.stringify(payload)
+
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            showMessage(
+                data.error ||
+                "فشلت العملية.",
+                "error"
+            );
+
+            button.disabled = false;
+
+            button.textContent =
+                "تأكيد";
+
+            return;
+        }
+
+
+        let newStock;
+
+
+        if (
+            currentAction === "receive"
+        ) {
+
+            newStock =
+                currentProduct.currentStock +
+                quantity;
+
+        }
+
+        else if (
+            currentAction === "issue"
+        ) {
+
+            newStock =
+                currentProduct.currentStock -
+                quantity;
+
+        }
+
+        else {
+
+            newStock =
+                quantity;
+
+        }
+
+
+        currentProduct.currentStock =
+            newStock;
+
+
+        showMessage(
+            "✅ تم تسجيل العملية بنجاح\nالرصيد الجديد: " +
+            newStock,
+            "success"
+        );
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "تمت العملية";
+
+
+        setTimeout(
+            function() {
+
+                document
+                    .getElementById(
+                        "transactionCard"
+                    )
+                    .classList.add("hidden");
+
+                showProduct();
+
+                button.textContent =
+                    "تأكيد";
+
+            },
+            1800
+        );
+
+    }
+
+    catch(error) {
+
+        showMessage(
+            "حدث خطأ في الاتصال بالخادم.",
+            "error"
+        );
+
+        button.disabled = false;
+
+        button.textContent =
+            "تأكيد";
+    }
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+    message,
+    type
+) {
+
+    const element =
+        document.getElementById(
+            "transactionMessage"
+        );
+
+    element.className =
+        "message " + type;
+
+    element.textContent =
+        message;
+}
+
+
+/* =========================
+   CANCEL
+========================= */
+
+function cancelTransaction() {
+
+    document
+        .getElementById(
+            "transactionCard"
+        )
+        .classList.add("hidden");
+
+    document
+        .getElementById(
+            "productCard"
+        )
+        .classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
