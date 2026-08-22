@@ -69,6 +69,7 @@ header {
     text-align: center;
     color: #6b7280;
     font-size: 14px;
+    direction: ltr;
 }
 
 .info {
@@ -129,6 +130,11 @@ button:disabled {
     color: #111827;
 }
 
+.test {
+    background: #7c3aed;
+    color: white;
+}
+
 input {
     width: 100%;
     padding: 16px;
@@ -159,6 +165,14 @@ input {
 .warning {
     background: #fef3c7;
     color: #92400e;
+}
+
+.status {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    white-space: pre-line;
 }
 
 #reader {
@@ -198,6 +212,20 @@ onclick="startScanner()">
 📷 مسح الباركود
 
 </button>
+
+<button
+id="testButton"
+class="test"
+onclick="testConnection()">
+
+🔌 اختبار الاتصال بالخادم
+
+</button>
+
+<div
+id="connectionStatus"
+class="hidden">
+</div>
 
 </section>
 
@@ -243,8 +271,7 @@ class="barcode">
 
 التصنيف:
 
-<strong
-id="productCategory">
+<strong id="productCategory">
 -
 </strong>
 
@@ -254,8 +281,7 @@ id="productCategory">
 
 الوحدة:
 
-<strong
-id="productUnit">
+<strong id="productUnit">
 -
 </strong>
 
@@ -322,8 +348,7 @@ class="title">
 
 الصنف:
 
-<strong
-id="transactionProduct">
+<strong id="transactionProduct">
 -
 </strong>
 
@@ -333,8 +358,7 @@ id="transactionProduct">
 
 الرصيد الحالي:
 
-<strong
-id="transactionStock">
+<strong id="transactionStock">
 0
 </strong>
 
@@ -378,8 +402,9 @@ id="transactionMessage">
 
 <script>
 
+
 /* =====================================================
-   NEW APPS SCRIPT URL
+   APPS SCRIPT WEB APP
 ===================================================== */
 
 const API_URL =
@@ -387,107 +412,12 @@ const API_URL =
 
 
 let scanner = null;
+
 let scanning = false;
+
 let currentProduct = null;
+
 let currentAction = null;
-
-
-/* =====================================================
-   CAMERA
-===================================================== */
-
-async function startScanner() {
-
-    await stopScanner();
-
-    hideAll();
-
-    document
-        .getElementById("scannerCard")
-        .classList.remove("hidden");
-
-    scanner =
-        new Html5Qrcode("reader");
-
-    scanning = true;
-
-    try {
-
-        await scanner.start(
-
-            {
-                facingMode:
-                    "environment"
-            },
-
-            {
-                fps: 10,
-
-                qrbox: {
-                    width: 280,
-                    height: 140
-                },
-
-                aspectRatio: 1.777
-            },
-
-            async function(decodedText) {
-
-                if (!scanning) {
-                    return;
-                }
-
-                scanning = false;
-
-                await stopScanner();
-
-                searchProduct(decodedText);
-
-            },
-
-            function() {}
-
-        );
-
-    } catch (error) {
-
-        scanning = false;
-
-        alert(
-            "تعذر تشغيل الكاميرا."
-        );
-
-        showHome();
-
-    }
-}
-
-
-/* =====================================================
-   STOP CAMERA
-===================================================== */
-
-async function stopScanner() {
-
-    scanning = false;
-
-    if (scanner) {
-
-        try {
-            await scanner.stop();
-        } catch (e) {}
-
-        try {
-            scanner.clear();
-        } catch (e) {}
-
-        scanner = null;
-    }
-
-    document
-        .getElementById("scannerCard")
-        .classList.add("hidden");
-}
 
 
 /* =====================================================
@@ -512,24 +442,60 @@ function jsonp(url, callback) {
     let finished = false;
 
 
-    const cleanup =
-        function() {
+    const timeout =
+        setTimeout(
+            function() {
 
-            if (finished) {
-                return;
-            }
+                if (finished) {
+                    return;
+                }
 
-            finished = true;
+                cleanup();
 
-            try {
-                delete window[callbackName];
-            } catch (e) {}
+                callback(
+                    new Error(
+                        "Server timeout"
+                    ),
+                    null
+                );
 
-            if (script.parentNode) {
-                script.parentNode.removeChild(script);
-            }
+            },
+            15000
+        );
 
-        };
+
+    function cleanup() {
+
+        if (finished) {
+            return;
+        }
+
+        finished = true;
+
+        clearTimeout(timeout);
+
+
+        try {
+
+            delete window[
+                callbackName
+            ];
+
+        }
+
+        catch (e) {}
+
+
+        if (
+            script.parentNode
+        ) {
+
+            script.parentNode
+                .removeChild(script);
+
+        }
+
+    }
 
 
     window[callbackName] =
@@ -566,10 +532,13 @@ function jsonp(url, callback) {
             cleanup();
 
             callback(
+
                 new Error(
                     "Network error"
                 ),
+
                 null
+
             );
 
         };
@@ -583,10 +552,261 @@ function jsonp(url, callback) {
 
 
 /* =====================================================
+   TEST CONNECTION
+===================================================== */
+
+function testConnection() {
+
+    const button =
+        document.getElementById(
+            "testButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "connectionStatus"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ جاري الاختبار...";
+
+
+    status.className =
+        "status warning";
+
+    status.textContent =
+        "جاري الاتصال بـ Apps Script...";
+
+    status.classList.remove(
+        "hidden"
+    );
+
+
+    const url =
+        API_URL +
+        "?action=test" +
+        "&_=" +
+        Date.now();
+
+
+    jsonp(
+
+        url,
+
+        function(error, data) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "🔌 اختبار الاتصال بالخادم";
+
+
+            if (error) {
+
+                status.className =
+                    "status error";
+
+
+                status.textContent =
+                    "❌ فشل الاتصال بالخادم\n\n" +
+                    error.message;
+
+
+                return;
+
+            }
+
+
+            if (
+                data &&
+                data.success === true
+            ) {
+
+                status.className =
+                    "status success";
+
+
+                status.textContent =
+                    "✅ الاتصال يعمل بنجاح\n\n" +
+                    "Apps Script متصل.";
+
+            }
+
+            else {
+
+                status.className =
+                    "status error";
+
+
+                status.textContent =
+                    "❌ الخادم رد ولكن توجد مشكلة\n\n" +
+                    (
+                        data &&
+                        data.error
+                            ? data.error
+                            : "Unknown error"
+                    );
+
+            }
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+async function startScanner() {
+
+    await stopScanner();
+
+
+    hideAll();
+
+
+    document
+        .getElementById(
+            "scannerCard"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+
+    scanner =
+        new Html5Qrcode(
+            "reader"
+        );
+
+
+    scanning = true;
+
+
+    try {
+
+        await scanner.start(
+
+            {
+                facingMode:
+                    "environment"
+            },
+
+            {
+                fps: 10,
+
+                qrbox: {
+                    width: 280,
+                    height: 140
+                },
+
+                aspectRatio: 1.777
+            },
+
+
+            async function(decodedText) {
+
+                if (!scanning) {
+                    return;
+                }
+
+
+                scanning = false;
+
+
+                await stopScanner();
+
+
+                searchProduct(
+                    decodedText
+                );
+
+            },
+
+
+            function() {}
+
+        );
+
+    }
+
+    catch (error) {
+
+        scanning = false;
+
+
+        alert(
+            "تعذر تشغيل الكاميرا.\n\n" +
+            error
+        );
+
+
+        showHome();
+
+    }
+
+}
+
+
+/* =====================================================
+   STOP CAMERA
+===================================================== */
+
+async function stopScanner() {
+
+    scanning = false;
+
+
+    if (scanner) {
+
+        try {
+            await scanner.stop();
+        }
+
+        catch (e) {}
+
+
+        try {
+            scanner.clear();
+        }
+
+        catch (e) {}
+
+
+        scanner = null;
+
+    }
+
+
+    document
+        .getElementById(
+            "scannerCard"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+}
+
+
+/* =====================================================
    SEARCH
 ===================================================== */
 
 function searchProduct(barcode) {
+
+    barcode =
+        String(
+            barcode || ""
+        ).trim();
+
 
     const url =
         API_URL +
@@ -594,22 +814,28 @@ function searchProduct(barcode) {
         "&barcode=" +
         encodeURIComponent(
             barcode
-        );
+        ) +
+        "&_=" +
+        Date.now();
 
 
     jsonp(
+
         url,
+
         function(error, data) {
 
             if (error) {
 
                 alert(
-                    "حدث خطأ في الاتصال بالخادم."
+                    "حدث خطأ في الاتصال بالخادم.\n\n" +
+                    error.message
                 );
 
                 showHome();
 
                 return;
+
             }
 
 
@@ -619,32 +845,39 @@ function searchProduct(barcode) {
             ) {
 
                 alert(
-                    "خطأ: " +
+
+                    "خطأ:\n" +
+
                     (
                         data &&
                         data.error
                             ? data.error
                             : "Unknown error"
                     )
+
                 );
 
                 showHome();
 
                 return;
+
             }
 
 
             if (!data.found) {
 
                 alert(
+
                     "⚠️ الصنف غير موجود\n\n" +
                     "Barcode:\n" +
                     barcode
+
                 );
 
                 showHome();
 
                 return;
+
             }
 
 
@@ -655,6 +888,7 @@ function searchProduct(barcode) {
             showProduct();
 
         }
+
     );
 
 }
@@ -668,34 +902,54 @@ function showProduct() {
 
     hideAll();
 
+
     document
-        .getElementById("productName")
+        .getElementById(
+            "productName"
+        )
         .textContent =
         currentProduct.name;
 
+
     document
-        .getElementById("productBarcode")
+        .getElementById(
+            "productBarcode"
+        )
         .textContent =
         currentProduct.barcode;
 
+
     document
-        .getElementById("productCategory")
+        .getElementById(
+            "productCategory"
+        )
         .textContent =
         currentProduct.category;
 
+
     document
-        .getElementById("productUnit")
+        .getElementById(
+            "productUnit"
+        )
         .textContent =
         currentProduct.unit;
 
+
     document
-        .getElementById("productStock")
+        .getElementById(
+            "productStock"
+        )
         .textContent =
         currentProduct.currentStock;
 
+
     document
-        .getElementById("productCard")
-        .classList.remove("hidden");
+        .getElementById(
+            "productCard"
+        )
+        .classList.remove(
+            "hidden"
+        );
 
 }
 
@@ -709,7 +963,9 @@ function openTransaction(action) {
     currentAction =
         action;
 
+
     hideAll();
+
 
     const titles = {
 
@@ -726,35 +982,47 @@ function openTransaction(action) {
 
 
     document
-        .getElementById("transactionTitle")
+        .getElementById(
+            "transactionTitle"
+        )
         .textContent =
         titles[action];
 
 
     document
-        .getElementById("transactionProduct")
+        .getElementById(
+            "transactionProduct"
+        )
         .textContent =
         currentProduct.name;
 
 
     document
-        .getElementById("transactionStock")
+        .getElementById(
+            "transactionStock"
+        )
         .textContent =
         currentProduct.currentStock;
 
 
     document
-        .getElementById("quantity")
+        .getElementById(
+            "quantity"
+        )
         .value = "";
 
 
     document
-        .getElementById("transactionMessage")
+        .getElementById(
+            "transactionMessage"
+        )
         .textContent = "";
 
 
     document
-        .getElementById("transactionMessage")
+        .getElementById(
+            "transactionMessage"
+        )
         .className = "";
 
 
@@ -762,14 +1030,18 @@ function openTransaction(action) {
 
 
     document
-        .getElementById("transactionCard")
-        .classList.remove("hidden");
+        .getElementById(
+            "transactionCard"
+        )
+        .classList.remove(
+            "hidden"
+        );
 
 }
 
 
 /* =====================================================
-   SUBMIT TRANSACTION
+   SUBMIT
 ===================================================== */
 
 function submitTransaction() {
@@ -777,7 +1049,9 @@ function submitTransaction() {
     const quantity =
         Number(
             document
-                .getElementById("quantity")
+                .getElementById(
+                    "quantity"
+                )
                 .value
         );
 
@@ -792,6 +1066,7 @@ function submitTransaction() {
         );
 
         return;
+
     }
 
 
@@ -803,6 +1078,7 @@ function submitTransaction() {
         );
 
         return;
+
     }
 
 
@@ -817,6 +1093,7 @@ function submitTransaction() {
         );
 
         return;
+
     }
 
 
@@ -834,14 +1111,14 @@ function submitTransaction() {
         );
 
         return;
+
     }
 
 
     const button =
-        document
-            .getElementById(
-                "confirmButton"
-            );
+        document.getElementById(
+            "confirmButton"
+        );
 
 
     button.disabled = true;
@@ -856,36 +1133,53 @@ function submitTransaction() {
         encodeURIComponent(
             currentAction
         ) +
+
         "&barcode=" +
         encodeURIComponent(
             currentProduct.barcode
         ) +
+
         "&quantity=" +
         encodeURIComponent(
             quantity
         ) +
+
         "&user=" +
         encodeURIComponent(
             "Mobile User"
         ) +
+
         "&notes=" +
-        encodeURIComponent("");
+        encodeURIComponent(
+            ""
+        ) +
+
+        "&_=" +
+        Date.now();
 
 
     jsonp(
+
         url,
+
         function(error, data) {
 
             if (error) {
 
                 showMessage(
-                    "حدث خطأ في الاتصال بالخادم.",
+
+                    "حدث خطأ في الاتصال بالخادم.\n\n" +
+                    error.message,
+
                     "error"
+
                 );
+
 
                 resetButton();
 
                 return;
+
             }
 
 
@@ -897,6 +1191,7 @@ function submitTransaction() {
                 showMessage(
 
                     "فشلت العملية:\n" +
+
                     (
                         data &&
                         data.error
@@ -908,9 +1203,11 @@ function submitTransaction() {
 
                 );
 
+
                 resetButton();
 
                 return;
+
             }
 
 
@@ -922,15 +1219,6 @@ function submitTransaction() {
                 currentProduct.currentStock =
                     Number(
                         data.transaction.stockAfter
-                    );
-
-            }
-
-            else {
-
-                currentProduct.currentStock =
-                    calculateNewStock(
-                        quantity
                     );
 
             }
@@ -952,70 +1240,37 @@ function submitTransaction() {
 
 
             setTimeout(
-                function() {
 
-                    showProduct();
+                function() {
 
                     resetButton();
 
+                    showProduct();
+
                 },
+
                 1500
+
             );
 
         }
+
     );
 
 }
 
 
 /* =====================================================
-   NEW STOCK
-===================================================== */
-
-function calculateNewStock(
-    quantity
-) {
-
-    const oldStock =
-        Number(
-            currentProduct.currentStock
-        ) || 0;
-
-
-    if (
-        currentAction === "receive"
-    ) {
-
-        return oldStock + quantity;
-
-    }
-
-
-    if (
-        currentAction === "issue"
-    ) {
-
-        return oldStock - quantity;
-
-    }
-
-
-    return quantity;
-
-}
-
-
-/* =====================================================
-   UI
+   RESET BUTTON
 ===================================================== */
 
 function resetButton() {
 
     const button =
-        document
-            .getElementById(
-                "confirmButton"
-            );
+        document.getElementById(
+            "confirmButton"
+        );
+
 
     button.disabled = false;
 
@@ -1025,26 +1280,35 @@ function resetButton() {
 }
 
 
+/* =====================================================
+   MESSAGE
+===================================================== */
+
 function showMessage(
     message,
     type
 ) {
 
     const element =
-        document
-            .getElementById(
-                "transactionMessage"
-            );
+        document.getElementById(
+            "transactionMessage"
+        );
+
 
     element.className =
         "message " +
         type;
+
 
     element.textContent =
         message;
 
 }
 
+
+/* =====================================================
+   CANCEL
+===================================================== */
 
 function cancelTransaction() {
 
@@ -1053,37 +1317,73 @@ function cancelTransaction() {
 }
 
 
+/* =====================================================
+   HOME
+===================================================== */
+
 function showHome() {
 
     hideAll();
 
+
     document
-        .getElementById("home")
-        .classList.remove("hidden");
+        .getElementById(
+            "home"
+        )
+        .classList.remove(
+            "hidden"
+        );
 
 }
 
+
+/* =====================================================
+   HIDE ALL
+===================================================== */
 
 function hideAll() {
 
     [
+
         "home",
         "scannerCard",
         "productCard",
         "transactionCard"
+
     ]
 
     .forEach(
+
         function(id) {
 
             document
                 .getElementById(id)
-                .classList.add("hidden");
+                .classList.add(
+                    "hidden"
+                );
 
         }
+
     );
 
 }
+
+
+/* =====================================================
+   INITIAL
+===================================================== */
+
+window.addEventListener(
+
+    "load",
+
+    function() {
+
+        showHome();
+
+    }
+
+);
 
 </script>
 
