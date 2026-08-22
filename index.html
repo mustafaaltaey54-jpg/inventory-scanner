@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-
-<html
-lang="ar"
-dir="rtl">
+<html lang="ar" dir="rtl">
 
 <head>
 
@@ -10,16 +7,13 @@ dir="rtl">
 
 <meta
 name="viewport"
-content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+content="width=device-width,initial-scale=1,viewport-fit=cover">
 
 <meta
 name="theme-color"
 content="#111827">
 
-<title>
-نظام مخزون الموصل
-</title>
-
+<title>نظام مخزون الموصل</title>
 
 <script
 src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
@@ -29,275 +23,320 @@ src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">
 <style>
 
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
-
 
 body {
 
-    margin:0;
+    margin: 0;
 
     font-family:
         Arial,
         sans-serif;
 
-    background:#f3f4f6;
+    background:
+        #f3f4f6;
 
-    color:#111827;
+    color:
+        #111827;
 
 }
-
 
 header {
 
-    background:#111827;
+    background:
+        #111827;
 
-    color:white;
+    color:
+        white;
 
-    text-align:center;
+    text-align:
+        center;
 
-    padding:18px;
+    padding:
+        18px;
 
-    font-size:21px;
+    font-size:
+        21px;
 
-    font-weight:bold;
+    font-weight:
+        bold;
 
 }
-
 
 .container {
 
-    max-width:520px;
+    width:
+        100%;
 
-    margin:auto;
+    max-width:
+        520px;
 
-    padding:18px;
+    margin:
+        auto;
+
+    padding:
+        18px;
 
 }
 
-
 .card {
 
-    background:white;
+    background:
+        white;
 
-    border-radius:18px;
+    border-radius:
+        18px;
 
-    padding:20px;
+    padding:
+        20px;
 
-    margin-bottom:16px;
+    margin-bottom:
+        16px;
 
     box-shadow:
         0 4px 18px rgba(0,0,0,.08);
 
 }
 
-
 .hidden {
-
-    display:none !important;
-
+    display: none !important;
 }
-
 
 .title {
 
-    text-align:center;
+    text-align:
+        center;
 
-    font-size:24px;
+    font-size:
+        24px;
 
-    font-weight:bold;
+    font-weight:
+        bold;
 
-    margin-bottom:12px;
+    margin-bottom:
+        12px;
 
 }
-
 
 .barcode {
 
-    text-align:center;
+    text-align:
+        center;
 
-    color:#6b7280;
+    color:
+        #6b7280;
 
-    font-size:14px;
-
-}
-
-
-.stock {
-
-    text-align:center;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    margin:20px 0 5px 0;
+    font-size:
+        14px;
 
 }
-
-
-.stockLabel {
-
-    text-align:center;
-
-    color:#6b7280;
-
-}
-
 
 .info {
 
-    background:#f9fafb;
+    background:
+        #f9fafb;
 
-    padding:12px;
+    padding:
+        13px;
 
-    border-radius:12px;
+    border-radius:
+        12px;
 
-    margin-top:8px;
+    margin-top:
+        8px;
 
 }
 
+.stock {
+
+    text-align:
+        center;
+
+    font-size:
+        34px;
+
+    font-weight:
+        bold;
+
+    margin:
+        20px 0 4px;
+
+}
+
+.stockLabel {
+
+    text-align:
+        center;
+
+    color:
+        #6b7280;
+
+}
 
 button {
 
-    width:100%;
+    width:
+        100%;
 
-    border:0;
+    border:
+        0;
 
-    border-radius:14px;
+    border-radius:
+        14px;
 
-    padding:16px;
+    padding:
+        16px;
 
-    margin-top:10px;
+    margin-top:
+        10px;
 
-    font-size:18px;
+    font-size:
+        18px;
 
-    font-weight:bold;
+    font-weight:
+        bold;
 
 }
-
 
 button:disabled {
-
-    opacity:.6;
-
+    opacity: .6;
 }
-
 
 .primary {
 
-    background:#111827;
+    background:
+        #111827;
 
-    color:white;
+    color:
+        white;
 
 }
-
 
 .receive {
 
-    background:#16a34a;
+    background:
+        #16a34a;
 
-    color:white;
+    color:
+        white;
 
 }
-
 
 .issue {
 
-    background:#dc2626;
+    background:
+        #dc2626;
 
-    color:white;
+    color:
+        white;
 
 }
-
 
 .count {
 
-    background:#2563eb;
+    background:
+        #2563eb;
 
-    color:white;
+    color:
+        white;
 
 }
-
 
 .secondary {
 
-    background:#e5e7eb;
+    background:
+        #e5e7eb;
 
-    color:#111827;
+    color:
+        #111827;
 
 }
 
-
 input {
 
-    width:100%;
+    width:
+        100%;
 
-    padding:15px;
+    padding:
+        16px;
+
+    font-size:
+        22px;
+
+    text-align:
+        center;
 
     border:
         1px solid #d1d5db;
 
-    border-radius:12px;
-
-    font-size:20px;
-
-    text-align:center;
+    border-radius:
+        12px;
 
 }
-
 
 .message {
 
-    margin-top:12px;
+    margin-top:
+        12px;
 
-    padding:14px;
+    border-radius:
+        12px;
 
-    border-radius:12px;
+    padding:
+        14px;
 
-    text-align:center;
+    text-align:
+        center;
 
-    white-space:pre-line;
+    white-space:
+        pre-line;
 
 }
-
 
 .success {
 
-    background:#dcfce7;
+    background:
+        #dcfce7;
 
-    color:#166534;
+    color:
+        #166534;
 
 }
-
 
 .error {
 
-    background:#fee2e2;
+    background:
+        #fee2e2;
 
-    color:#991b1b;
+    color:
+        #991b1b;
 
 }
-
 
 .warning {
 
-    background:#fef3c7;
+    background:
+        #fef3c7;
 
-    color:#92400e;
+    color:
+        #92400e;
 
 }
 
-
 #reader {
 
-    width:100%;
+    width:
+        100%;
 
-    overflow:hidden;
+    border-radius:
+        16px;
 
-    border-radius:16px;
+    overflow:
+        hidden;
 
-    background:#000;
+    background:
+        #000;
 
 }
 
@@ -308,20 +347,17 @@ input {
 
 <body>
 
-
 <header>
-
 نظام مخزون الموصل
-
 </header>
 
 
 <div class="container">
 
 
-<!-- ==================================================
+<!-- =====================================================
      HOME
-================================================== -->
+===================================================== -->
 
 <section
 id="home"
@@ -329,9 +365,7 @@ class="card">
 
 
 <div class="title">
-
 📦 المخزون
-
 </div>
 
 
@@ -348,9 +382,9 @@ onclick="startScanner()">
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      SCANNER
-================================================== -->
+===================================================== -->
 
 <section
 id="scannerCard"
@@ -373,9 +407,9 @@ onclick="stopScanner()">
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      PRODUCT
-================================================== -->
+===================================================== -->
 
 <section
 id="productCard"
@@ -385,18 +419,14 @@ class="card hidden">
 <div
 id="productName"
 class="title">
-
 -
-
 </div>
 
 
 <div
 id="productBarcode"
 class="barcode">
-
 -
-
 </div>
 
 
@@ -406,9 +436,7 @@ class="barcode">
 
 <strong
 id="productCategory">
-
 -
-
 </strong>
 
 </div>
@@ -420,9 +448,7 @@ id="productCategory">
 
 <strong
 id="productUnit">
-
 -
-
 </strong>
 
 </div>
@@ -431,16 +457,12 @@ id="productUnit">
 <div
 id="productStock"
 class="stock">
-
 0
-
 </div>
 
 
 <div class="stockLabel">
-
 الرصيد الحالي
-
 </div>
 
 
@@ -484,9 +506,9 @@ onclick="startScanner()">
 
 
 
-<!-- ==================================================
+<!-- =====================================================
      TRANSACTION
-================================================== -->
+===================================================== -->
 
 <section
 id="transactionCard"
@@ -496,9 +518,7 @@ class="card hidden">
 <div
 id="transactionTitle"
 class="title">
-
 -
-
 </div>
 
 
@@ -508,9 +528,7 @@ class="title">
 
 <strong
 id="transactionProduct">
-
 -
-
 </strong>
 
 </div>
@@ -522,9 +540,7 @@ id="transactionProduct">
 
 <strong
 id="transactionStock">
-
 0
-
 </strong>
 
 </div>
@@ -568,23 +584,11 @@ id="transactionMessage">
 
 </section>
 
-
 </div>
 
 
-<!-- ==================================================
-     HIDDEN POST FRAME
-================================================== -->
-
-<iframe
-name="hiddenSubmitFrame"
-id="hiddenSubmitFrame"
-style="display:none">
-</iframe>
-
 
 <script>
-
 
 /* =====================================================
    API URL
@@ -604,29 +608,14 @@ let currentAction = null;
 
 
 /* =====================================================
-   START CAMERA
+   START SCANNER
 ===================================================== */
 
 async function startScanner() {
 
-
     await stopScanner();
 
-
-    document
-        .getElementById("home")
-        .classList.add("hidden");
-
-
-    document
-        .getElementById("productCard")
-        .classList.add("hidden");
-
-
-    document
-        .getElementById("transactionCard")
-        .classList.add("hidden");
-
+    hideAll();
 
     document
         .getElementById("scannerCard")
@@ -634,16 +623,12 @@ async function startScanner() {
 
 
     scanner =
-        new Html5Qrcode(
-            "reader"
-        );
-
+        new Html5Qrcode("reader");
 
     scanning = true;
 
 
     try {
-
 
         await scanner.start(
 
@@ -652,74 +637,48 @@ async function startScanner() {
                     "environment"
             },
 
-
             {
+                fps: 10,
 
-                fps:10,
-
-                qrbox:
-                {
-                    width:280,
-
-                    height:140
+                qrbox: {
+                    width: 280,
+                    height: 140
                 },
 
-                aspectRatio:1.777
-
+                aspectRatio: 1.777
             },
-
 
             async function(decodedText) {
 
-
-                if (!scanning)
+                if (!scanning) {
                     return;
-
+                }
 
                 scanning = false;
 
-
                 await stopScanner();
 
-
-                searchProduct(
-                    decodedText
-                );
-
+                searchProduct(decodedText);
 
             },
 
-
-            function(errorMessage) {
-
-                // تجاهل أخطاء المسح المؤقتة
-
+            function() {
+                // ignore scanner errors
             }
 
         );
 
-
     }
 
-    catch(error) {
-
+    catch (error) {
 
         scanning = false;
 
-
         alert(
-            "تعذر تشغيل الكاميرا."
+            "تعذر تشغيل الكاميرا. تأكد من السماح باستخدام الكاميرا."
         );
 
-
-        document
-            .getElementById("scannerCard")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("home")
-            .classList.remove("hidden");
+        showHome();
 
     }
 
@@ -727,37 +686,25 @@ async function startScanner() {
 
 
 /* =====================================================
-   STOP CAMERA
+   STOP SCANNER
 ===================================================== */
 
 async function stopScanner() {
 
-
     scanning = false;
-
 
     if (scanner) {
 
         try {
-
             await scanner.stop();
-
-        }
-        catch(e) {}
-
+        } catch (e) {}
 
         try {
-
             scanner.clear();
-
-        }
-        catch(e) {}
-
+        } catch (e) {}
 
         scanner = null;
-
     }
-
 
     document
         .getElementById("scannerCard")
@@ -767,111 +714,68 @@ async function stopScanner() {
 
 
 /* =====================================================
-   SEARCH PRODUCT - JSONP
+   JSONP REQUEST
 ===================================================== */
 
-function searchProduct(
-    barcode
+function jsonpRequest(
+    url,
+    callback
 ) {
 
-
     const callbackName =
-        "barcodeCallback_" +
-        Date.now();
+        "cb_" +
+        Date.now() +
+        "_" +
+        Math.floor(Math.random() * 100000);
+
+
+    const script =
+        document.createElement("script");
+
+
+    let finished = false;
+
+
+    function cleanup() {
+
+        if (finished) {
+            return;
+        }
+
+        finished = true;
+
+        delete window[callbackName];
+
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+    }
 
 
     window[callbackName] =
         function(data) {
 
+            cleanup();
 
-            try {
-
-
-                if (
-                    !data ||
-                    !data.success
-                ) {
-
-                    alert(
-                        "تعذر الاتصال بقاعدة البيانات."
-                    );
-
-                    goHome();
-
-                    return;
-
-                }
-
-
-                if (!data.found) {
-
-                    alert(
-                        "⚠️ الصنف غير موجود\n\n" +
-                        "Barcode:\n" +
-                        barcode
-                    );
-
-                    goHome();
-
-                    return;
-
-                }
-
-
-                currentProduct =
-                    data.product;
-
-
-                showProduct();
-
-
-            }
-
-
-            finally {
-
-
-                delete window[
-                    callbackName
-                ];
-
-
-                const script =
-                    document.getElementById(
-                        "barcodeLookupScript"
-                    );
-
-
-                if (script) {
-
-                    script.remove();
-
-                }
-
-            }
+            callback(
+                null,
+                data
+            );
 
         };
 
 
-    const script =
-        document.createElement(
-            "script"
-        );
-
-
-    script.id =
-        "barcodeLookupScript";
-
-
     script.src =
-        API_URL +
-        "?action=find" +
-        "&barcode=" +
-        encodeURIComponent(
-            barcode
+        url +
+        (
+            url.includes("?")
+                ? "&"
+                : "?"
         ) +
-        "&callback=" +
-        callbackName +
+        "callback=" +
+        encodeURIComponent(
+            callbackName
+        ) +
         "&t=" +
         Date.now();
 
@@ -879,30 +783,99 @@ function searchProduct(
     script.onerror =
         function() {
 
+            cleanup();
 
-            alert(
-                "تعذر الاتصال بقاعدة البيانات."
+            callback(
+                new Error(
+                    "Network error"
+                ),
+                null
             );
-
-
-            goHome();
-
-
-            delete window[
-                callbackName
-            ];
-
-
-            script.remove();
 
         };
 
 
     document
         .body
-        .appendChild(
-            script
-        );
+        .appendChild(script);
+
+}
+
+
+/* =====================================================
+   SEARCH PRODUCT
+===================================================== */
+
+function searchProduct(
+    barcode
+) {
+
+    const url =
+        API_URL +
+        "?action=find" +
+        "&barcode=" +
+        encodeURIComponent(barcode);
+
+
+    jsonpRequest(
+        url,
+        function(error, data) {
+
+            if (error) {
+
+                alert(
+                    "حدث خطأ في الاتصال بالخادم."
+                );
+
+                showHome();
+
+                return;
+            }
+
+
+            if (
+                !data ||
+                data.success !== true
+            ) {
+
+                alert(
+                    "حدث خطأ: " +
+                    (
+                        data &&
+                        data.error
+                            ? data.error
+                            : "Unknown error"
+                    )
+                );
+
+                showHome();
+
+                return;
+            }
+
+
+            if (!data.found) {
+
+                alert(
+                    "⚠️ الصنف غير موجود\n\n" +
+                    "Barcode:\n" +
+                    barcode
+                );
+
+                showHome();
+
+                return;
+            }
+
+
+            currentProduct =
+                data.product;
+
+
+            showProduct();
+
+        }
+    );
 
 }
 
@@ -913,54 +886,42 @@ function searchProduct(
 
 function showProduct() {
 
+    hideAll();
+
 
     document
-        .getElementById(
-            "productName"
-        )
+        .getElementById("productName")
         .textContent =
         currentProduct.name;
 
 
     document
-        .getElementById(
-            "productBarcode"
-        )
+        .getElementById("productBarcode")
         .textContent =
         currentProduct.barcode;
 
 
     document
-        .getElementById(
-            "productCategory"
-        )
+        .getElementById("productCategory")
         .textContent =
         currentProduct.category;
 
 
     document
-        .getElementById(
-            "productUnit"
-        )
+        .getElementById("productUnit")
         .textContent =
         currentProduct.unit;
 
 
     document
-        .getElementById(
-            "productStock"
-        )
+        .getElementById("productStock")
         .textContent =
         currentProduct.currentStock;
 
 
     document
-        .getElementById(
-            "productCard"
-        )
-        .classList.remove(
-            "hidden"
-        );
+        .getElementById("productCard")
+        .classList.remove("hidden");
 
 }
 
@@ -973,41 +934,11 @@ function openTransaction(
     action
 ) {
 
-
     currentAction =
         action;
 
 
-    document
-        .getElementById(
-            "productCard"
-        )
-        .classList.add(
-            "hidden"
-        );
-
-
-    document
-        .getElementById(
-            "transactionCard"
-        )
-        .classList.remove(
-            "hidden"
-        );
-
-
-    document
-        .getElementById(
-            "quantity"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            "transactionMessage"
-        )
-        .className = "";
+    hideAll();
 
 
     const titles = {
@@ -1025,27 +956,44 @@ function openTransaction(
 
 
     document
-        .getElementById(
-            "transactionTitle"
-        )
+        .getElementById("transactionTitle")
         .textContent =
         titles[action];
 
 
     document
-        .getElementById(
-            "transactionProduct"
-        )
+        .getElementById("transactionProduct")
         .textContent =
         currentProduct.name;
 
 
     document
-        .getElementById(
-            "transactionStock"
-        )
+        .getElementById("transactionStock")
         .textContent =
         currentProduct.currentStock;
+
+
+    document
+        .getElementById("quantity")
+        .value = "";
+
+
+    document
+        .getElementById("transactionMessage")
+        .className = "";
+
+
+    document
+        .getElementById("transactionMessage")
+        .textContent = "";
+
+
+    resetConfirmButton();
+
+
+    document
+        .getElementById("transactionCard")
+        .classList.remove("hidden");
 
 }
 
@@ -1056,22 +1004,15 @@ function openTransaction(
 
 function submitTransaction() {
 
-
     const quantity =
         Number(
             document
-                .getElementById(
-                    "quantity"
-                )
+                .getElementById("quantity")
                 .value
         );
 
 
-    if (
-        !Number.isFinite(
-            quantity
-        )
-    ) {
+    if (!Number.isFinite(quantity)) {
 
         showMessage(
             "أدخل كمية صحيحة.",
@@ -1079,13 +1020,10 @@ function submitTransaction() {
         );
 
         return;
-
     }
 
 
-    if (
-        quantity < 0
-    ) {
+    if (quantity < 0) {
 
         showMessage(
             "الكمية لا يمكن أن تكون سالبة.",
@@ -1093,7 +1031,6 @@ function submitTransaction() {
         );
 
         return;
-
     }
 
 
@@ -1108,7 +1045,6 @@ function submitTransaction() {
         );
 
         return;
-
     }
 
 
@@ -1126,313 +1062,188 @@ function submitTransaction() {
         );
 
         return;
-
     }
 
 
     const button =
         document
-            .getElementById(
-                "confirmButton"
-            );
+            .getElementById("confirmButton");
 
 
     button.disabled = true;
-
 
     button.textContent =
         "جاري التسجيل...";
 
 
-    /*
-      Hidden POST form
-    */
-
-    const form =
-        document.createElement(
-            "form"
-        );
-
-
-    form.method =
-        "POST";
-
-
-    form.action =
-        API_URL;
-
-
-    form.target =
-        "hiddenSubmitFrame";
-
-
-    form.style.display =
-        "none";
-
-
-    addHiddenField(
-        form,
-        "action",
-        currentAction
-    );
-
-
-    addHiddenField(
-        form,
-        "barcode",
-        currentProduct.barcode
-    );
-
-
-    addHiddenField(
-        form,
-        "quantity",
-        quantity
-    );
-
-
-    addHiddenField(
-        form,
-        "user",
-        "Mobile User"
-    );
-
-
-    addHiddenField(
-        form,
-        "notes",
-        ""
-    );
-
-
-    document
-        .body
-        .appendChild(
-            form
-        );
-
-
-    form.submit();
-
-
-    form.remove();
-
-
-    /*
-      بعد إعطاء Apps Script وقتًا للتحديث،
-      نعيد قراءة الرصيد.
-    */
-
-    setTimeout(
-        function() {
-
-            refreshProductAfterTransaction();
-
-        },
-        1800
-    );
-
-}
-
-
-/* =====================================================
-   ADD FORM FIELD
-===================================================== */
-
-function addHiddenField(
-    form,
-    name,
-    value
-) {
-
-
-    const input =
-        document.createElement(
-            "input"
-        );
-
-
-    input.type =
-        "hidden";
-
-
-    input.name =
-        name;
-
-
-    input.value =
-        value;
-
-
-    form.appendChild(
-        input
-    );
-
-}
-
-
-/* =====================================================
-   REFRESH AFTER TRANSACTION
-===================================================== */
-
-function refreshProductAfterTransaction() {
-
-
-    const barcode =
-        currentProduct.barcode;
-
-
-    const callbackName =
-        "refreshCallback_" +
-        Date.now();
-
-
-    window[callbackName] =
-        function(data) {
-
-
-            try {
-
-
-                if (
-                    !data ||
-                    !data.success ||
-                    !data.found
-                ) {
-
-                    showMessage(
-                        "تعذر قراءة الرصيد الجديد.",
-                        "error"
-                    );
-
-                    resetConfirmButton();
-
-                    return;
-
-                }
-
-
-                currentProduct =
-                    data.product;
-
+    const url =
+        API_URL +
+        "?action=" +
+        encodeURIComponent(
+            currentAction
+        ) +
+        "&barcode=" +
+        encodeURIComponent(
+            currentProduct.barcode
+        ) +
+        "&quantity=" +
+        encodeURIComponent(
+            quantity
+        ) +
+        "&user=" +
+        encodeURIComponent(
+            "Mobile User"
+        ) +
+        "&notes=" +
+        encodeURIComponent("");
+
+
+    jsonpRequest(
+        url,
+        function(error, data) {
+
+            if (error) {
 
                 showMessage(
-
-                    "✅ تمت العملية بنجاح\n" +
-                    "الرصيد الجديد: " +
-                    currentProduct.currentStock,
-
-                    "success"
-
+                    "حدث خطأ في الاتصال بالخادم.",
+                    "error"
                 );
-
 
                 resetConfirmButton();
 
-
-                setTimeout(
-                    function() {
-
-                        document
-                            .getElementById(
-                                "transactionCard"
-                            )
-                            .classList
-                            .add(
-                                "hidden"
-                            );
+                return;
+            }
 
 
-                        showProduct();
+            if (
+                !data ||
+                data.success !== true
+            ) {
 
-                    },
-                    1500
+                showMessage(
+                    "فشلت العملية:\n" +
+                    (
+                        data &&
+                        data.error
+                            ? data.error
+                            : "Unknown error"
+                    ),
+                    "error"
                 );
 
+                resetConfirmButton();
 
+                return;
             }
 
 
-            finally {
+            /*
+              Use the actual stock returned
+              from Google Sheets.
+            */
+
+            let newStock;
 
 
-                delete window[
-                    callbackName
-                ];
+            if (
+                data.transaction &&
+                data.transaction.stockAfter !== undefined
+            ) {
 
-
-                const script =
-                    document.getElementById(
-                        "refreshProductScript"
+                newStock =
+                    Number(
+                        data.transaction.stockAfter
                     );
 
+            }
 
-                if (script) {
+            else {
 
-                    script.remove();
-
-                }
+                newStock =
+                    getCalculatedStock(
+                        quantity
+                    );
 
             }
 
-        };
 
-
-    const script =
-        document.createElement(
-            "script"
-        );
-
-
-    script.id =
-        "refreshProductScript";
-
-
-    script.src =
-        API_URL +
-        "?action=find" +
-        "&barcode=" +
-        encodeURIComponent(
-            barcode
-        ) +
-        "&callback=" +
-        callbackName +
-        "&t=" +
-        Date.now();
-
-
-    script.onerror =
-        function() {
+            currentProduct.currentStock =
+                newStock;
 
 
             showMessage(
-
-                "تم إرسال العملية، " +
-                "لكن تعذر قراءة الرصيد الجديد.",
-
-                "warning"
-
+                "✅ تمت العملية بنجاح\n" +
+                "الرصيد الجديد: " +
+                newStock,
+                "success"
             );
 
 
-            resetConfirmButton();
+            button.textContent =
+                "تمت العملية";
 
 
-            delete window[
-                callbackName
-            ];
+            setTimeout(
+                function() {
+
+                    hideAll();
+
+                    showProduct();
+
+                    resetConfirmButton();
+
+                },
+                1500
+            );
+
+        }
+    );
+
+}
 
 
-            script.remove();
+/* =====================================================
+   CALCULATE FALLBACK STOCK
+===================================================== */
 
-        };
+function getCalculatedStock(
+    quantity
+) {
+
+    const oldStock =
+        Number(
+            currentProduct.currentStock
+        ) || 0;
 
 
-    document
-        .body
-        .appendChild(
-            script
-        );
+    if (
+        currentAction === "receive"
+    ) {
+
+        return oldStock + quantity;
+
+    }
+
+
+    if (
+        currentAction === "issue"
+    ) {
+
+        return oldStock - quantity;
+
+    }
+
+
+    if (
+        currentAction === "count"
+    ) {
+
+        return quantity;
+
+    }
+
+
+    return oldStock;
 
 }
 
@@ -1442,7 +1253,6 @@ function refreshProductAfterTransaction() {
 ===================================================== */
 
 function resetConfirmButton() {
-
 
     const button =
         document
@@ -1466,97 +1276,81 @@ function resetConfirmButton() {
 ===================================================== */
 
 function showMessage(
-    message,
+    text,
     type
 ) {
 
-
-    const element =
+    const message =
         document
             .getElementById(
                 "transactionMessage"
             );
 
 
-    element.className =
+    message.className =
         "message " +
         type;
 
 
-    element.textContent =
-        message;
+    message.textContent =
+        text;
 
 }
 
 
 /* =====================================================
-   CANCEL
+   CANCEL TRANSACTION
 ===================================================== */
 
 function cancelTransaction() {
 
+    hideAll();
 
-    document
-        .getElementById(
-            "transactionCard"
-        )
-        .classList.add(
-            "hidden"
-        );
-
-
-    document
-        .getElementById(
-            "productCard"
-        )
-        .classList.remove(
-            "hidden"
-        );
+    showProduct();
 
 }
 
 
 /* =====================================================
-   HOME
+   SHOW HOME
 ===================================================== */
 
-function goHome() {
+function showHome() {
 
-
-    document
-        .getElementById(
-            "scannerCard"
-        )
-        .classList.add(
-            "hidden"
-        );
-
+    hideAll();
 
     document
-        .getElementById(
-            "productCard"
-        )
-        .classList.add(
-            "hidden"
-        );
+        .getElementById("home")
+        .classList.remove("hidden");
+
+}
 
 
-    document
-        .getElementById(
-            "transactionCard"
-        )
-        .classList.add(
-            "hidden"
-        );
+/* =====================================================
+   HIDE ALL
+===================================================== */
+
+function hideAll() {
+
+    const ids = [
+
+        "home",
+        "scannerCard",
+        "productCard",
+        "transactionCard"
+
+    ];
 
 
-    document
-        .getElementById(
-            "home"
-        )
-        .classList.remove(
-            "hidden"
-        );
+    ids.forEach(
+        function(id) {
+
+            document
+                .getElementById(id)
+                .classList.add("hidden");
+
+        }
+    );
 
 }
 
